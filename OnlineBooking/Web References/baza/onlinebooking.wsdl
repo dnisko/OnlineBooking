@@ -1,0 +1,2110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="f" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImageFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImageFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetImageFileResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tabela_nastan">
+        <s:complexType />
+      </s:element>
+      <s:element name="Tabela_nastanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Tabela_nastanResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="k" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="l" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="loginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Register">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prezime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegisterResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_nastan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="naziv" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="opis" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="objekt" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="slika" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cas" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_nastanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vnesi_nastanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Vnesi_admin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prez" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Vnesi_adminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Vnesi_adminResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_opis">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="opis" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_opisResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vnesi_opisResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_objekt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="grad" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_objektResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vnesi_objektResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_vo_kosnicka">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_karta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_klient" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vnesi_vo_kosnickaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vnesi_vo_kosnickaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kupi_karta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_karta" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="id_klient" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kupi_kartaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kupi_kartaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Vnesi_karta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nastan" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="red" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="mesto" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cena" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Vnesi_kartaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Vnesi_kartaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Promeni">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Prezime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PromeniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PromeniResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Promeni_korisnik">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Ime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Prezime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Promeni_korisnikResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Promeni_korisnikResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Promeni_nastan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="opis" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="objekt" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="naziv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vreme" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Promeni_nastanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Promeni_nastanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="brisi_kosnicka_eden">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="k_id_karti" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="k_id_klient" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="brisi_kosnicka_edenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brisi_kosnicka_edenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="brisi_klient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_klient" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="brisi_klientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brisi_klientResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="brisi_nastan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_nastan" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="brisi_nastanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="brisi_nastanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vkupno">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="vkupnoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vkupnoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kosnicka">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="kosnickaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="kosnickaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_karti_korisnik_profile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_karti_korisnik_profileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pregled_karti_korisnik_profileResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_karti_korisnik">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_karti_korisnikResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pregled_karti_korisnikResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_karti_korisnici">
+        <s:complexType />
+      </s:element>
+      <s:element name="pregled_karti_korisniciResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pregled_karti_korisniciResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_kupena_karta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="klient" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="karta" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pregled_kupena_kartaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pregled_kupena_kartaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Opis_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="Opis_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Opis_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Objekt_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="Objekt_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Objekt_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_korisnici_po_username_DS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_korisnici_po_username_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_korisnici_po_username_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_korisnici_po_id_DS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_korisnici_po_id_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_korisnici_po_id_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_korisnici_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_korisnici_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_korisnici_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_admini_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_admini_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_admini_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="napravi_admin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="napravi_adminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="napravi_adminResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_top5_nastani_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_top5_nastani_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_top5_nastani_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_nastani_za_nastan">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_nastani_za_nastanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_nastani_za_nastanResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_karti_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_karti_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_karti_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_karti_detalno_DS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_karti_detalno_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_karti_detalno_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_zona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_zonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_zonaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_mesto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_mestoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_mestoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_red">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mesto" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_redResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_redResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_cena">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="mesto" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="red" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_cenaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_cenaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_nastani_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_nastani_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_nastani_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_kupeni_karti_za_nastani_po_naziv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="naziv" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_kupeni_karti_za_nastani_po_nazivResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_kupeni_karti_za_nastani_po_nazivResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="lista_na_kupeni_karti_za_nastani">
+        <s:complexType />
+      </s:element>
+      <s:element name="lista_na_kupeni_karti_za_nastaniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lista_na_kupeni_karti_za_nastaniResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NastanInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NastanInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NastanInfoResult" type="tns:Nastan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Nastan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Video" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sajt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sopis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Kopis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Slika" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vreme" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Naziv" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="data_DS">
+        <s:complexType />
+      </s:element>
+      <s:element name="data_DSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data_DSResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prefix" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomersResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:UploadFile" />
+  </wsdl:message>
+  <wsdl:message name="UploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:UploadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImageFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImageFile" />
+  </wsdl:message>
+  <wsdl:message name="GetImageFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImageFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tabela_nastanSoapIn">
+    <wsdl:part name="parameters" element="tns:Tabela_nastan" />
+  </wsdl:message>
+  <wsdl:message name="Tabela_nastanSoapOut">
+    <wsdl:part name="parameters" element="tns:Tabela_nastanResponse" />
+  </wsdl:message>
+  <wsdl:message name="loginSoapIn">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="loginSoapOut">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterSoapIn">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="RegisterSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_nastanSoapIn">
+    <wsdl:part name="parameters" element="tns:vnesi_nastan" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_nastanSoapOut">
+    <wsdl:part name="parameters" element="tns:vnesi_nastanResponse" />
+  </wsdl:message>
+  <wsdl:message name="Vnesi_adminSoapIn">
+    <wsdl:part name="parameters" element="tns:Vnesi_admin" />
+  </wsdl:message>
+  <wsdl:message name="Vnesi_adminSoapOut">
+    <wsdl:part name="parameters" element="tns:Vnesi_adminResponse" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_opisSoapIn">
+    <wsdl:part name="parameters" element="tns:vnesi_opis" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_opisSoapOut">
+    <wsdl:part name="parameters" element="tns:vnesi_opisResponse" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_objektSoapIn">
+    <wsdl:part name="parameters" element="tns:vnesi_objekt" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_objektSoapOut">
+    <wsdl:part name="parameters" element="tns:vnesi_objektResponse" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_vo_kosnickaSoapIn">
+    <wsdl:part name="parameters" element="tns:vnesi_vo_kosnicka" />
+  </wsdl:message>
+  <wsdl:message name="vnesi_vo_kosnickaSoapOut">
+    <wsdl:part name="parameters" element="tns:vnesi_vo_kosnickaResponse" />
+  </wsdl:message>
+  <wsdl:message name="kupi_kartaSoapIn">
+    <wsdl:part name="parameters" element="tns:kupi_karta" />
+  </wsdl:message>
+  <wsdl:message name="kupi_kartaSoapOut">
+    <wsdl:part name="parameters" element="tns:kupi_kartaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Vnesi_kartaSoapIn">
+    <wsdl:part name="parameters" element="tns:Vnesi_karta" />
+  </wsdl:message>
+  <wsdl:message name="Vnesi_kartaSoapOut">
+    <wsdl:part name="parameters" element="tns:Vnesi_kartaResponse" />
+  </wsdl:message>
+  <wsdl:message name="PromeniSoapIn">
+    <wsdl:part name="parameters" element="tns:Promeni" />
+  </wsdl:message>
+  <wsdl:message name="PromeniSoapOut">
+    <wsdl:part name="parameters" element="tns:PromeniResponse" />
+  </wsdl:message>
+  <wsdl:message name="Promeni_korisnikSoapIn">
+    <wsdl:part name="parameters" element="tns:Promeni_korisnik" />
+  </wsdl:message>
+  <wsdl:message name="Promeni_korisnikSoapOut">
+    <wsdl:part name="parameters" element="tns:Promeni_korisnikResponse" />
+  </wsdl:message>
+  <wsdl:message name="Promeni_nastanSoapIn">
+    <wsdl:part name="parameters" element="tns:Promeni_nastan" />
+  </wsdl:message>
+  <wsdl:message name="Promeni_nastanSoapOut">
+    <wsdl:part name="parameters" element="tns:Promeni_nastanResponse" />
+  </wsdl:message>
+  <wsdl:message name="brisi_kosnicka_edenSoapIn">
+    <wsdl:part name="parameters" element="tns:brisi_kosnicka_eden" />
+  </wsdl:message>
+  <wsdl:message name="brisi_kosnicka_edenSoapOut">
+    <wsdl:part name="parameters" element="tns:brisi_kosnicka_edenResponse" />
+  </wsdl:message>
+  <wsdl:message name="brisi_klientSoapIn">
+    <wsdl:part name="parameters" element="tns:brisi_klient" />
+  </wsdl:message>
+  <wsdl:message name="brisi_klientSoapOut">
+    <wsdl:part name="parameters" element="tns:brisi_klientResponse" />
+  </wsdl:message>
+  <wsdl:message name="brisi_nastanSoapIn">
+    <wsdl:part name="parameters" element="tns:brisi_nastan" />
+  </wsdl:message>
+  <wsdl:message name="brisi_nastanSoapOut">
+    <wsdl:part name="parameters" element="tns:brisi_nastanResponse" />
+  </wsdl:message>
+  <wsdl:message name="vkupnoSoapIn">
+    <wsdl:part name="parameters" element="tns:vkupno" />
+  </wsdl:message>
+  <wsdl:message name="vkupnoSoapOut">
+    <wsdl:part name="parameters" element="tns:vkupnoResponse" />
+  </wsdl:message>
+  <wsdl:message name="kosnickaSoapIn">
+    <wsdl:part name="parameters" element="tns:kosnicka" />
+  </wsdl:message>
+  <wsdl:message name="kosnickaSoapOut">
+    <wsdl:part name="parameters" element="tns:kosnickaResponse" />
+  </wsdl:message>
+  <wsdl:message name="pregled_karti_korisnik_profileSoapIn">
+    <wsdl:part name="parameters" element="tns:pregled_karti_korisnik_profile" />
+  </wsdl:message>
+  <wsdl:message name="pregled_karti_korisnik_profileSoapOut">
+    <wsdl:part name="parameters" element="tns:pregled_karti_korisnik_profileResponse" />
+  </wsdl:message>
+  <wsdl:message name="pregled_karti_korisnikSoapIn">
+    <wsdl:part name="parameters" element="tns:pregled_karti_korisnik" />
+  </wsdl:message>
+  <wsdl:message name="pregled_karti_korisnikSoapOut">
+    <wsdl:part name="parameters" element="tns:pregled_karti_korisnikResponse" />
+  </wsdl:message>
+  <wsdl:message name="pregled_karti_korisniciSoapIn">
+    <wsdl:part name="parameters" element="tns:pregled_karti_korisnici" />
+  </wsdl:message>
+  <wsdl:message name="pregled_karti_korisniciSoapOut">
+    <wsdl:part name="parameters" element="tns:pregled_karti_korisniciResponse" />
+  </wsdl:message>
+  <wsdl:message name="pregled_kupena_kartaSoapIn">
+    <wsdl:part name="parameters" element="tns:pregled_kupena_karta" />
+  </wsdl:message>
+  <wsdl:message name="pregled_kupena_kartaSoapOut">
+    <wsdl:part name="parameters" element="tns:pregled_kupena_kartaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Opis_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:Opis_DS" />
+  </wsdl:message>
+  <wsdl:message name="Opis_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:Opis_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="Objekt_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:Objekt_DS" />
+  </wsdl:message>
+  <wsdl:message name="Objekt_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:Objekt_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_korisnici_po_username_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_korisnici_po_username_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_korisnici_po_username_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_korisnici_po_username_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_korisnici_po_id_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_korisnici_po_id_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_korisnici_po_id_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_korisnici_po_id_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_korisnici_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_korisnici_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_korisnici_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_korisnici_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_admini_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_admini_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_admini_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_admini_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="napravi_adminSoapIn">
+    <wsdl:part name="parameters" element="tns:napravi_admin" />
+  </wsdl:message>
+  <wsdl:message name="napravi_adminSoapOut">
+    <wsdl:part name="parameters" element="tns:napravi_adminResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_top5_nastani_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_top5_nastani_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_top5_nastani_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_top5_nastani_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_nastani_za_nastanSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_nastani_za_nastan" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_nastani_za_nastanSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_nastani_za_nastanResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_karti_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_karti_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_karti_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_karti_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_karti_detalno_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_karti_detalno_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_karti_detalno_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_karti_detalno_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_zonaSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_zona" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_zonaSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_zonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_mestoSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_mesto" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_mestoSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_mestoResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_redSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_red" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_redSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_redResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_cenaSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_cena" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_cenaSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_cenaResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_nastani_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_nastani_DS" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_nastani_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_nastani_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_kupeni_karti_za_nastani_po_nazivSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_kupeni_karti_za_nastani_po_naziv" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_kupeni_karti_za_nastani_po_nazivSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_kupeni_karti_za_nastani_po_nazivResponse" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_kupeni_karti_za_nastaniSoapIn">
+    <wsdl:part name="parameters" element="tns:lista_na_kupeni_karti_za_nastani" />
+  </wsdl:message>
+  <wsdl:message name="lista_na_kupeni_karti_za_nastaniSoapOut">
+    <wsdl:part name="parameters" element="tns:lista_na_kupeni_karti_za_nastaniResponse" />
+  </wsdl:message>
+  <wsdl:message name="NastanInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:NastanInfo" />
+  </wsdl:message>
+  <wsdl:message name="NastanInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:NastanInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="data_DSSoapIn">
+    <wsdl:part name="parameters" element="tns:data_DS" />
+  </wsdl:message>
+  <wsdl:message name="data_DSSoapOut">
+    <wsdl:part name="parameters" element="tns:data_DSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomers" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="onlinebookingSoap">
+    <wsdl:operation name="UploadFile">
+      <wsdl:input message="tns:UploadFileSoapIn" />
+      <wsdl:output message="tns:UploadFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImageFile">
+      <wsdl:input message="tns:GetImageFileSoapIn" />
+      <wsdl:output message="tns:GetImageFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tabela_nastan">
+      <wsdl:input message="tns:Tabela_nastanSoapIn" />
+      <wsdl:output message="tns:Tabela_nastanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginSoapIn" />
+      <wsdl:output message="tns:loginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <wsdl:input message="tns:RegisterSoapIn" />
+      <wsdl:output message="tns:RegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_nastan">
+      <wsdl:input message="tns:vnesi_nastanSoapIn" />
+      <wsdl:output message="tns:vnesi_nastanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vnesi_admin">
+      <wsdl:input message="tns:Vnesi_adminSoapIn" />
+      <wsdl:output message="tns:Vnesi_adminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_opis">
+      <wsdl:input message="tns:vnesi_opisSoapIn" />
+      <wsdl:output message="tns:vnesi_opisSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_objekt">
+      <wsdl:input message="tns:vnesi_objektSoapIn" />
+      <wsdl:output message="tns:vnesi_objektSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_vo_kosnicka">
+      <wsdl:input message="tns:vnesi_vo_kosnickaSoapIn" />
+      <wsdl:output message="tns:vnesi_vo_kosnickaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="kupi_karta">
+      <wsdl:input message="tns:kupi_kartaSoapIn" />
+      <wsdl:output message="tns:kupi_kartaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Vnesi_karta">
+      <wsdl:input message="tns:Vnesi_kartaSoapIn" />
+      <wsdl:output message="tns:Vnesi_kartaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Promeni">
+      <wsdl:input message="tns:PromeniSoapIn" />
+      <wsdl:output message="tns:PromeniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Promeni_korisnik">
+      <wsdl:input message="tns:Promeni_korisnikSoapIn" />
+      <wsdl:output message="tns:Promeni_korisnikSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Promeni_nastan">
+      <wsdl:input message="tns:Promeni_nastanSoapIn" />
+      <wsdl:output message="tns:Promeni_nastanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="brisi_kosnicka_eden">
+      <wsdl:input message="tns:brisi_kosnicka_edenSoapIn" />
+      <wsdl:output message="tns:brisi_kosnicka_edenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="brisi_klient">
+      <wsdl:input message="tns:brisi_klientSoapIn" />
+      <wsdl:output message="tns:brisi_klientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="brisi_nastan">
+      <wsdl:input message="tns:brisi_nastanSoapIn" />
+      <wsdl:output message="tns:brisi_nastanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="vkupno">
+      <wsdl:input message="tns:vkupnoSoapIn" />
+      <wsdl:output message="tns:vkupnoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="kosnicka">
+      <wsdl:input message="tns:kosnickaSoapIn" />
+      <wsdl:output message="tns:kosnickaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnik_profile">
+      <wsdl:input message="tns:pregled_karti_korisnik_profileSoapIn" />
+      <wsdl:output message="tns:pregled_karti_korisnik_profileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnik">
+      <wsdl:input message="tns:pregled_karti_korisnikSoapIn" />
+      <wsdl:output message="tns:pregled_karti_korisnikSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnici">
+      <wsdl:input message="tns:pregled_karti_korisniciSoapIn" />
+      <wsdl:output message="tns:pregled_karti_korisniciSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pregled_kupena_karta">
+      <wsdl:input message="tns:pregled_kupena_kartaSoapIn" />
+      <wsdl:output message="tns:pregled_kupena_kartaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Opis_DS">
+      <wsdl:input message="tns:Opis_DSSoapIn" />
+      <wsdl:output message="tns:Opis_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Objekt_DS">
+      <wsdl:input message="tns:Objekt_DSSoapIn" />
+      <wsdl:output message="tns:Objekt_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_po_username_DS">
+      <wsdl:input message="tns:lista_na_korisnici_po_username_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_korisnici_po_username_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_po_id_DS">
+      <wsdl:input message="tns:lista_na_korisnici_po_id_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_korisnici_po_id_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_DS">
+      <wsdl:input message="tns:lista_na_korisnici_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_korisnici_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_admini_DS">
+      <wsdl:input message="tns:lista_na_admini_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_admini_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="napravi_admin">
+      <wsdl:input message="tns:napravi_adminSoapIn" />
+      <wsdl:output message="tns:napravi_adminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_top5_nastani_DS">
+      <wsdl:input message="tns:lista_na_top5_nastani_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_top5_nastani_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_nastani_za_nastan">
+      <wsdl:input message="tns:lista_na_nastani_za_nastanSoapIn" />
+      <wsdl:output message="tns:lista_na_nastani_za_nastanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_karti_DS">
+      <wsdl:input message="tns:lista_na_karti_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_karti_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_karti_detalno_DS">
+      <wsdl:input message="tns:lista_na_karti_detalno_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_karti_detalno_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_zona">
+      <wsdl:input message="tns:lista_na_zonaSoapIn" />
+      <wsdl:output message="tns:lista_na_zonaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_mesto">
+      <wsdl:input message="tns:lista_na_mestoSoapIn" />
+      <wsdl:output message="tns:lista_na_mestoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_red">
+      <wsdl:input message="tns:lista_na_redSoapIn" />
+      <wsdl:output message="tns:lista_na_redSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_cena">
+      <wsdl:input message="tns:lista_na_cenaSoapIn" />
+      <wsdl:output message="tns:lista_na_cenaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_nastani_DS">
+      <wsdl:input message="tns:lista_na_nastani_DSSoapIn" />
+      <wsdl:output message="tns:lista_na_nastani_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_kupeni_karti_za_nastani_po_naziv">
+      <wsdl:input message="tns:lista_na_kupeni_karti_za_nastani_po_nazivSoapIn" />
+      <wsdl:output message="tns:lista_na_kupeni_karti_za_nastani_po_nazivSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_kupeni_karti_za_nastani">
+      <wsdl:input message="tns:lista_na_kupeni_karti_za_nastaniSoapIn" />
+      <wsdl:output message="tns:lista_na_kupeni_karti_za_nastaniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NastanInfo">
+      <wsdl:input message="tns:NastanInfoSoapIn" />
+      <wsdl:output message="tns:NastanInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="data_DS">
+      <wsdl:input message="tns:data_DSSoapIn" />
+      <wsdl:output message="tns:data_DSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <wsdl:input message="tns:GetCustomersSoapIn" />
+      <wsdl:output message="tns:GetCustomersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="onlinebookingSoap" type="tns:onlinebookingSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadFile">
+      <soap:operation soapAction="http://tempuri.org/UploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImageFile">
+      <soap:operation soapAction="http://tempuri.org/GetImageFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tabela_nastan">
+      <soap:operation soapAction="http://tempuri.org/Tabela_nastan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://tempuri.org/login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap:operation soapAction="http://tempuri.org/Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_nastan">
+      <soap:operation soapAction="http://tempuri.org/vnesi_nastan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vnesi_admin">
+      <soap:operation soapAction="http://tempuri.org/Vnesi_admin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_opis">
+      <soap:operation soapAction="http://tempuri.org/vnesi_opis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_objekt">
+      <soap:operation soapAction="http://tempuri.org/vnesi_objekt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_vo_kosnicka">
+      <soap:operation soapAction="http://tempuri.org/vnesi_vo_kosnicka" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kupi_karta">
+      <soap:operation soapAction="http://tempuri.org/kupi_karta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vnesi_karta">
+      <soap:operation soapAction="http://tempuri.org/Vnesi_karta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Promeni">
+      <soap:operation soapAction="http://tempuri.org/Promeni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Promeni_korisnik">
+      <soap:operation soapAction="http://tempuri.org/Promeni_korisnik" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Promeni_nastan">
+      <soap:operation soapAction="http://tempuri.org/Promeni_nastan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="brisi_kosnicka_eden">
+      <soap:operation soapAction="http://tempuri.org/brisi_kosnicka_eden" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="brisi_klient">
+      <soap:operation soapAction="http://tempuri.org/brisi_klient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="brisi_nastan">
+      <soap:operation soapAction="http://tempuri.org/brisi_nastan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vkupno">
+      <soap:operation soapAction="http://tempuri.org/vkupno" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kosnicka">
+      <soap:operation soapAction="http://tempuri.org/kosnicka" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnik_profile">
+      <soap:operation soapAction="http://tempuri.org/pregled_karti_korisnik_profile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnik">
+      <soap:operation soapAction="http://tempuri.org/pregled_karti_korisnik" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnici">
+      <soap:operation soapAction="http://tempuri.org/pregled_karti_korisnici" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_kupena_karta">
+      <soap:operation soapAction="http://tempuri.org/pregled_kupena_karta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Opis_DS">
+      <soap:operation soapAction="http://tempuri.org/Opis_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Objekt_DS">
+      <soap:operation soapAction="http://tempuri.org/Objekt_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_po_username_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_korisnici_po_username_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_po_id_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_korisnici_po_id_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_korisnici_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_admini_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_admini_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="napravi_admin">
+      <soap:operation soapAction="http://tempuri.org/napravi_admin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_top5_nastani_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_top5_nastani_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_nastani_za_nastan">
+      <soap:operation soapAction="http://tempuri.org/lista_na_nastani_za_nastan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_karti_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_karti_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_karti_detalno_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_karti_detalno_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_zona">
+      <soap:operation soapAction="http://tempuri.org/lista_na_zona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_mesto">
+      <soap:operation soapAction="http://tempuri.org/lista_na_mesto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_red">
+      <soap:operation soapAction="http://tempuri.org/lista_na_red" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_cena">
+      <soap:operation soapAction="http://tempuri.org/lista_na_cena" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_nastani_DS">
+      <soap:operation soapAction="http://tempuri.org/lista_na_nastani_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_kupeni_karti_za_nastani_po_naziv">
+      <soap:operation soapAction="http://tempuri.org/lista_na_kupeni_karti_za_nastani_po_naziv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_kupeni_karti_za_nastani">
+      <soap:operation soapAction="http://tempuri.org/lista_na_kupeni_karti_za_nastani" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NastanInfo">
+      <soap:operation soapAction="http://tempuri.org/NastanInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="data_DS">
+      <soap:operation soapAction="http://tempuri.org/data_DS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <soap:operation soapAction="http://tempuri.org/GetCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="onlinebookingSoap12" type="tns:onlinebookingSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadFile">
+      <soap12:operation soapAction="http://tempuri.org/UploadFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImageFile">
+      <soap12:operation soapAction="http://tempuri.org/GetImageFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tabela_nastan">
+      <soap12:operation soapAction="http://tempuri.org/Tabela_nastan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+      <soap12:operation soapAction="http://tempuri.org/login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap12:operation soapAction="http://tempuri.org/Register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_nastan">
+      <soap12:operation soapAction="http://tempuri.org/vnesi_nastan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vnesi_admin">
+      <soap12:operation soapAction="http://tempuri.org/Vnesi_admin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_opis">
+      <soap12:operation soapAction="http://tempuri.org/vnesi_opis" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_objekt">
+      <soap12:operation soapAction="http://tempuri.org/vnesi_objekt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vnesi_vo_kosnicka">
+      <soap12:operation soapAction="http://tempuri.org/vnesi_vo_kosnicka" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kupi_karta">
+      <soap12:operation soapAction="http://tempuri.org/kupi_karta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Vnesi_karta">
+      <soap12:operation soapAction="http://tempuri.org/Vnesi_karta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Promeni">
+      <soap12:operation soapAction="http://tempuri.org/Promeni" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Promeni_korisnik">
+      <soap12:operation soapAction="http://tempuri.org/Promeni_korisnik" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Promeni_nastan">
+      <soap12:operation soapAction="http://tempuri.org/Promeni_nastan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="brisi_kosnicka_eden">
+      <soap12:operation soapAction="http://tempuri.org/brisi_kosnicka_eden" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="brisi_klient">
+      <soap12:operation soapAction="http://tempuri.org/brisi_klient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="brisi_nastan">
+      <soap12:operation soapAction="http://tempuri.org/brisi_nastan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vkupno">
+      <soap12:operation soapAction="http://tempuri.org/vkupno" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kosnicka">
+      <soap12:operation soapAction="http://tempuri.org/kosnicka" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnik_profile">
+      <soap12:operation soapAction="http://tempuri.org/pregled_karti_korisnik_profile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnik">
+      <soap12:operation soapAction="http://tempuri.org/pregled_karti_korisnik" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_karti_korisnici">
+      <soap12:operation soapAction="http://tempuri.org/pregled_karti_korisnici" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pregled_kupena_karta">
+      <soap12:operation soapAction="http://tempuri.org/pregled_kupena_karta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Opis_DS">
+      <soap12:operation soapAction="http://tempuri.org/Opis_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Objekt_DS">
+      <soap12:operation soapAction="http://tempuri.org/Objekt_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_po_username_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_korisnici_po_username_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_po_id_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_korisnici_po_id_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_korisnici_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_korisnici_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_admini_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_admini_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="napravi_admin">
+      <soap12:operation soapAction="http://tempuri.org/napravi_admin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_top5_nastani_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_top5_nastani_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_nastani_za_nastan">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_nastani_za_nastan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_karti_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_karti_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_karti_detalno_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_karti_detalno_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_zona">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_zona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_mesto">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_mesto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_red">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_red" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_cena">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_cena" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_nastani_DS">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_nastani_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_kupeni_karti_za_nastani_po_naziv">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_kupeni_karti_za_nastani_po_naziv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lista_na_kupeni_karti_za_nastani">
+      <soap12:operation soapAction="http://tempuri.org/lista_na_kupeni_karti_za_nastani" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NastanInfo">
+      <soap12:operation soapAction="http://tempuri.org/NastanInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="data_DS">
+      <soap12:operation soapAction="http://tempuri.org/data_DS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <soap12:operation soapAction="http://tempuri.org/GetCustomers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="onlinebooking">
+    <wsdl:port name="onlinebookingSoap" binding="tns:onlinebookingSoap">
+      <soap:address location="https://localhost:44394/onlinebooking.asmx" />
+    </wsdl:port>
+    <wsdl:port name="onlinebookingSoap12" binding="tns:onlinebookingSoap12">
+      <soap12:address location="https://localhost:44394/onlinebooking.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
