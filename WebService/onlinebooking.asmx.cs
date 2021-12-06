@@ -19,10 +19,10 @@ namespace WebService
     [ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class onlinebooking : System.Web.Services.WebService
+    public class Onlinebooking : System.Web.Services.WebService
     {
         public readonly string Konekcija;
-        public onlinebooking()
+        public Onlinebooking()
         {
             Konekcija = "Provider=SQLOLEDB;Data Source=Dinko;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - OleDb
             

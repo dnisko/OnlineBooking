@@ -227,11 +227,18 @@
     <Content Include="images\search.gif" />
     <Content Include="images\search_l.gif" />
     <Content Include="images\small_shadow.gif" />
+    <Content Include="Pages\Admin\admins.aspx" />
+    <Content Include="Pages\Admin\karti.aspx" />
+    <Content Include="Pages\Admin\korisnici.aspx" />
+    <Content Include="Pages\Admin\pocetnaadmin.aspx" />
+    <Content Include="Pages\Admin\prikazinastani.aspx" />
+    <Content Include="Pages\Admin\vnesinastan.aspx" />
     <Content Include="Pages\Korisink\Category.aspx" />
     <Content Include="Pages\Korisink\index.aspx" />
     <Content Include="Pages\Korisink\Korisik.Master" />
     <Content Include="Pages\Korisink\Sliki.ashx" />
     <Content Include="Pages\Admin\Admin.Master" />
+    <Content Include="Pages\Admin\proba.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -330,6 +337,51 @@
     </Compile>
     <Compile Include="Pages\Admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\admins.aspx.cs">
+      <DependentUpon>admins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\admins.aspx.designer.cs">
+      <DependentUpon>admins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\karti.aspx.cs">
+      <DependentUpon>karti.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\karti.aspx.designer.cs">
+      <DependentUpon>karti.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\korisnici.aspx.cs">
+      <DependentUpon>korisnici.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\korisnici.aspx.designer.cs">
+      <DependentUpon>korisnici.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\pocetnaadmin.aspx.cs">
+      <DependentUpon>pocetnaadmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\pocetnaadmin.aspx.designer.cs">
+      <DependentUpon>pocetnaadmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\prikazinastani.aspx.cs">
+      <DependentUpon>prikazinastani.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\prikazinastani.aspx.designer.cs">
+      <DependentUpon>prikazinastani.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\proba.ashx.cs">
+      <DependentUpon>proba.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\vnesinastan.aspx.cs">
+      <DependentUpon>vnesinastan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\vnesinastan.aspx.designer.cs">
+      <DependentUpon>vnesinastan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Korisink\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
