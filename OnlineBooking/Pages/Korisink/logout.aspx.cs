@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace OnlineBooking.Pages.Korisink
 {
-    public partial class logout : System.Web.UI.Page
+    public partial class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

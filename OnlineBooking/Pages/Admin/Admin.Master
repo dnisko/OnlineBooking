@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="OnlineBooking.Pages.Admin.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Online booking на карти</title>
+    <script src="Scripts/jquery-1.2.6.js" type="text/javascript"></script>
+<script src="Scripts/jquery.autocomplete.js" type="text/javascript"></script>    
+<link rel="stylesheet" type="text/css" href="CSS/jquery.autocomplete.css"/>
+    <link rel="Stylesheet" href="../../Scripts/layout.css" />
+
+        <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="wrapper">
+    <table class="style1" style="border-style: groove; border-color: #FF0000">
+        <tr>
+            <td class="style2" colspan="2">
+                ONLINE BOOKING НА КАРТИ<br />
+                <br />
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                </asp:ContentPlaceHolder>
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td class="style22">
+                <asp:Label ID="Label1" runat="server" Text="Label" Font-Size="Medium"></asp:Label>
+                &nbsp;<br />
+                <br />
+                <table class="style5">
+                    <tr>
+                        <td>
+                            <asp:LinkButton ID="LinkButton3" runat="server" onclick="LinkButton3_Click" 
+                                Visible="False">Одјави се</asp:LinkButton>
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="LinkButton4" runat="server" onclick="LinkButton4_Click" 
+                                Visible="False">Мој Профил</asp:LinkButton>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <asp:Panel ID="LoggedPanel" runat="server" Height="295px" 
+                    style="text-align: left" Width="248px" Visible="False">
+                    &nbsp;<br />
+                    <br />
+                    <table class="style5">
+                        <tr>
+                            <td class="style18">
+                                <asp:Label ID="Label11" runat="server" Text="Име"></asp:Label>
+                            </td>
+                            <td class="style14">
+                                <asp:TextBox ID="txtPime" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="style18">
+                                <asp:Label ID="Label10" runat="server" Text="Презиме"></asp:Label>
+                            </td>
+                            <td class="style14">
+                                <asp:TextBox ID="txtPprezime" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="style18">
+                                <asp:Label ID="Label14" runat="server" Text="email"></asp:Label>
+                                </td>
+                            <td class="style14">
+                                <asp:TextBox ID="txtPemail" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="style18">
+                                <asp:Label ID="Label12" runat="server" Text="Username"></asp:Label>
+                                </td>
+                            <td class="style14">
+                                <asp:TextBox ID="txtPuser" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="style18">
+                                <asp:Label ID="Label13" runat="server" Text="Password"></asp:Label>
+                                </td>
+                            <td class="style14">
+                                <asp:TextBox ID="txtPpass" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="style17" style="text-align: center">
+                                <asp:Button ID="Button6" runat="server" Text="Промени" CausesValidation="False" 
+                                    onclick="Button6_Click" />
+                            </td>
+                            <td style="text-align: center" class="style15">
+                                <asp:Button ID="Button7" runat="server" Text="Откажи" CausesValidation="False" 
+                                    onclick="Button7_Click" style="text-align: center" />
+                            </td>
+                        </tr>                    
+                     </table>
+                    <br />
+                    
+                    <asp:Label ID="lblPorakaPromena" runat="server" Text="Label"></asp:Label>
+                </asp:Panel>
+                
+                <br />
+                &nbsp;<br />
+            </td>
+            <td class="style4" valign="top">
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">        
+        </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+    </table>
+        <div class="push">
+        </div>
+    </div>
+        <div class="footer">copyright © D.N. 2014</div>
+    </form>
+</body>
+</html>
+

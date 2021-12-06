@@ -30,7 +30,7 @@
                     </asp:ImageButton>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <asp:HyperLink ID="hLkupi" runat="server" CssClass="hyperlink" BackColor="Transparent" NavigateUrl="~/Naracka.aspx"></asp:HyperLink>
+                    <asp:HyperLink ID="hLkupi" runat="server" CssClass="hyperlink" BackColor="Transparent" NavigateUrl="~/Pages/Korisink/Naracka.aspx"></asp:HyperLink>
                 </FooterTemplate>
             </asp:TemplateField>
         </Columns>

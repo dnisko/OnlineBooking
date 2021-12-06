@@ -14,27 +14,25 @@ namespace OnlineBooking.Pages.Korisink
         {
             if (Session["korisnik"] != null)
             {
-                Response.Redirect("~/index.aspx");
+                Response.Redirect("~/Pages/Korisink/index.aspx");
             }
             lblPoraka.Text = "";
             HyperLink1.Visible = false;
         }
         protected void LogInbtn_Click(object sender, EventArgs e)
         {
-            baza.onlinebooking Login = new baza.onlinebooking();
-            DataSet ds = Login.login(usertxt.Text, passtxt.Text);
-
-            bool isAdmin = false;
+            var login = new baza.onlinebooking();
+            var ds = login.login(usertxt.Text, passtxt.Text);
 
             if (ds.Tables[0].Rows.Count == 1)
             {
-                string ime = (ds.Tables[0].Rows[0]["ime"]).ToString();
-                string prezime = (ds.Tables[0].Rows[0]["prezime"]).ToString();
-                string email = (ds.Tables[0].Rows[0]["email"]).ToString();
-                string user = (ds.Tables[0].Rows[0]["username"]).ToString();
-                string pass = (ds.Tables[0].Rows[0]["pass"]).ToString();
-                int id_user = Int32.Parse((ds.Tables[0].Rows[0]["id_klient"]).ToString());
-                isAdmin = Convert.ToBoolean(ds.Tables[0].Rows[0]["isadmin"]);
+                var ime = (ds.Tables[0].Rows[0]["ime"]).ToString();
+                var prezime = (ds.Tables[0].Rows[0]["prezime"]).ToString();
+                var email = (ds.Tables[0].Rows[0]["email"]).ToString();
+                var user = (ds.Tables[0].Rows[0]["username"]).ToString();
+                var pass = (ds.Tables[0].Rows[0]["pass"]).ToString();
+                var id_user = int.Parse((ds.Tables[0].Rows[0]["id_klient"]).ToString());
+                var isAdmin = Convert.ToBoolean(ds.Tables[0].Rows[0]["isadmin"]);
 
                 if (isAdmin)
                 {
@@ -46,7 +44,7 @@ namespace OnlineBooking.Pages.Korisink
                     Session["user"] = user;
                     Session["pass"] = pass;
 
-                    Response.Redirect("../Admin/pocetnaadmin.aspx");
+                    Response.Redirect("~/Pages/Admin/pocetnaadmin.aspx");
                 }
                 else
                 {
@@ -58,7 +56,7 @@ namespace OnlineBooking.Pages.Korisink
                     Session["user"] = user;
                     Session["pass"] = pass;
 
-                    Response.Redirect("~/index.aspx");
+                    Response.Redirect("~/Pages/Korisink/index.aspx");
                 }
             }
             else
@@ -69,7 +67,7 @@ namespace OnlineBooking.Pages.Korisink
         }
         protected void LogInCanclebtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/index.aspx");
+            Response.Redirect("~/Pages/Korisink/index.aspx");
         }
     }
 }

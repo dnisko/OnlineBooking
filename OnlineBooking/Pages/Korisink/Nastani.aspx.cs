@@ -9,14 +9,14 @@ using System.Web.UI.WebControls;
 
 namespace OnlineBooking.Pages.Korisink
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class Nastani : System.Web.UI.Page
     {
+        private baza.onlinebooking _b;
         protected void Page_Load(object sender, EventArgs e)
         {
-            var b = new baza.onlinebooking();
-
-            var ds = b.lista_na_nastani_za_nastan();
-            reNastani.DataSource = ds;
+            _b = new baza.onlinebooking();
+            var ds = _b.lista_na_nastani_za_nastan();
+            DataList1.DataSource = ds;
             foreach (DataTable table in ds.Tables)
             {
                 foreach (DataRow dr in table.Rows)
@@ -28,7 +28,7 @@ namespace OnlineBooking.Pages.Korisink
                     dr["vreme"] = dt.ToString("dddd, dd-MMMM-yyyy", ci); ;
                 }
             }
-            reNastani.DataBind();
+            DataList1.DataBind();
         }
     }
 }

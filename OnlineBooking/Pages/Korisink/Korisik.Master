@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
-<head profile="http://gmpg.org/xfn/11">
+<head>
     <title>OnlineBooking</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="imagetoolbar" content="no" />
@@ -39,15 +39,15 @@
             <div id="topbar" class="clear">
                 <div id="login" class="fl_right">
                     <asp:Label ID="welcomelbl" runat="server" Text="Добредојдовте, "></asp:Label>
-                    <asp:HyperLink ID="HyperLinkLogIn" runat="server" CssClass="hyperlink" NavigateUrl="~/login.aspx">Најави се </asp:HyperLink>
-                    <asp:HyperLink ID="HyperLinkLogOut" runat="server" CssClass="hyperlink" NavigateUrl="~/logout.aspx" Visible="False">Одјави се </asp:HyperLink>
+                    <asp:HyperLink ID="HyperLinkLogIn" runat="server" CssClass="hyperlink" NavigateUrl="~/Pages/Korisink/login.aspx">Најави се </asp:HyperLink>
+                    <asp:HyperLink ID="HyperLinkLogOut" runat="server" CssClass="hyperlink" NavigateUrl="~/Pages/Korisink/logout.aspx" Visible="False">Одјави се </asp:HyperLink>
                     <asp:Label ID="Label1" runat="server" Text=" | "></asp:Label>
-                    <asp:HyperLink ID="HyperLinkReg" runat="server" CssClass="hyperlink" NavigateUrl="~/Register.aspx">Регистрирај се </asp:HyperLink>
-                    <asp:HyperLink ID="HyperLinkProfile" runat="server" CssClass="hyperlink" NavigateUrl="~/MyProfile.aspx" Visible="False">Мој профил</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLinkReg" runat="server" CssClass="hyperlink" NavigateUrl="~~/Pages//Register.aspx">Регистрирај се </asp:HyperLink>
+                    <asp:HyperLink ID="HyperLinkProfile" runat="server" CssClass="hyperlink" NavigateUrl="~/Pages/Korisink/MyProfile.aspx" Visible="False">Мој профил</asp:HyperLink>
                     |
                     <!--
                         <a href="Kosnicka.aspx">
-                    <img runat="server" src="~/Sliki/kosnicka/kosnicka.jpg" width="40" height="40" alt=""/></a>
+                    <img runat="server" src="~/Sliki/kosnicka/kosnicka.jpg" width="40" height="40" alt=""></img></a>
                      -->
                     <div class="fl_right">
                         <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="../../Sliki/kosnicka/kosnicka.jpg" OnClick="ImageButton1_Click"

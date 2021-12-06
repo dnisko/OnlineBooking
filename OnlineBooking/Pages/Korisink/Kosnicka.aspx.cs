@@ -7,78 +7,79 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Int32;
 
 namespace OnlineBooking.Pages.Korisink
 {
     public partial class Kosnicka : System.Web.UI.Page
     {
         baza.onlinebooking b;
-        decimal grdTotal = 0;
+        decimal _grdTotal = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             //Label1.Visible = false;
-            if (!IsPostBack)
+            if (IsPostBack)
+                return;
+            b = new baza.onlinebooking();
+            var ds = b.kosnicka(Parse(Session["id_korisnik"].ToString()));
+            GridView1.DataSource = ds.Tables["kosnicka"];
+            foreach (DataTable table in ds.Tables)
             {
-                b = new baza.onlinebooking();
-                DataSet ds = b.kosnicka(Int32.Parse(Session["id_korisnik"].ToString()));
-                GridView1.DataSource = ds.Tables["kosnicka"];
-                foreach (DataTable table in ds.Tables)
+                foreach (DataRow dr in table.Rows)
                 {
-                    foreach (DataRow dr in table.Rows)
-                    {
-                        CultureInfo ci = new CultureInfo("mk-MK");
-                        DateTime dt = Convert.ToDateTime(dr["vreme"].ToString());
+                    var ci = new CultureInfo("mk-MK");
+                    var dt = Convert.ToDateTime(dr["vreme"].ToString());
 
 
-                        dr["vreme"] = dt.ToString("dddd, dd-MMMM-yyyy", ci); ;
-                    }
+                    dr["vreme"] = dt.ToString("dddd, dd-MMMM-yyyy", ci); ;
                 }
-                GridView1.DataBind();
-                //Label1.Text = DateTime.Today.ToString("yyyy/MM/dd");
             }
+            GridView1.DataBind();
+            //Label1.Text = DateTime.Today.ToString("yyyy/MM/dd");
         }
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "kosnicka")
+            if (e.CommandName != "kosnicka")
+                return;
+            var idKarti = Parse(e.CommandArgument.ToString());
+            var idKlient = Parse(Session["id_korisnik"].ToString());
+            b = new baza.onlinebooking();
+            var odgovor = b.brisi_kosnicka_eden(idKarti, idKlient);
+            if (odgovor == "OK")
             {
-                int id_karti = Int32.Parse(e.CommandArgument.ToString());
-                int id_klient = Int32.Parse(Session["id_korisnik"].ToString());
-                b = new baza.onlinebooking();
-                string odgovor = b.brisi_kosnicka_eden(id_karti, id_klient);
-                if (odgovor == "OK")
-                {
-                    Response.Redirect("~/Kosnicka.aspx");
-                }
-                else
-                {
-                    Label1.Visible = true;
-                    Label1.ForeColor = Color.Red;
-                    Label1.Text = "Грешка, обиди се повторно";
-                }
+                Response.Redirect("~/Pages/Korisink/Kosnicka.aspx");
+            }
+            else
+            {
+                Label1.Visible = true;
+                Label1.ForeColor = Color.Red;
+                Label1.Text = "Грешка, обиди се повторно";
             }
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                decimal rowTotal = Convert.ToDecimal
+                var rowTotal = Convert.ToDecimal
                             (DataBinder.Eval(e.Row.DataItem, "cena"));
-                grdTotal = grdTotal + rowTotal;
+                _grdTotal += rowTotal;
                 //Label1.Text += " grdTotal = " + grdTotal;
                 //Label1.Text += " rowTotal = " + rowTotal;
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                Label lbl = (Label)e.Row.FindControl("lblTotal");
-                lbl.Text = grdTotal.ToString();
+                var lbl = (Label)e.Row.FindControl("lblTotal");
+                lbl.Text = _grdTotal.ToString(CultureInfo.InvariantCulture);
                 if (GridView1.Rows.Count == 1)
                 {
-                    HyperLink hLkupi = (HyperLink)e.Row.FindControl("hLkupi");
+                    var hLkupi = (HyperLink)e.Row.FindControl("hLkupi");
                     hLkupi.Text = "Купи карта";
                 }
-                if (GridView1.Rows.Count > 1)
+
+                if (GridView1.Rows.Count <= 1)
+                    return;
                 {
-                    HyperLink hLkupi = (HyperLink)e.Row.FindControl("hLkupi");
+                    var hLkupi = (HyperLink)e.Row.FindControl("hLkupi");
                     hLkupi.Text = "Купи карти";
                 }
                 //Label1.Text += "lbltotal = " + lbl.Text;

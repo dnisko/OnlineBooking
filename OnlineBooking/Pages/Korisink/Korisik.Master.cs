@@ -36,12 +36,12 @@ namespace OnlineBooking.Pages.Korisink
             }
             if (Session["admin"] != null)
             {
-                Response.Redirect("~/Admin/pocetnaadmin.aspx");
+                Response.Redirect("~/Pages/Admin/pocetnaadmin.aspx");
             }
         }
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("~/Kosnicka.aspx");
+            Response.Redirect("~/Pages/Korisink/Kosnicka.aspx");
         }
     }
 }

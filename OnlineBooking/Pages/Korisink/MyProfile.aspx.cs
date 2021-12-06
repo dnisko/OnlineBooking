@@ -19,16 +19,16 @@ namespace OnlineBooking.Pages.Korisink
             lblpromena.ForeColor = Color.Green;
             if (!IsPostBack)
             {
-                baza.onlinebooking user = new baza.onlinebooking();
-                DataSet ds = user.lista_na_korisnici_po_id_DS(Int32.Parse(Session["id_korisnik"].ToString()));
+                var user = new baza.onlinebooking();
+                var ds = user.lista_na_korisnici_po_id_DS(Int32.Parse(Session["id_korisnik"].ToString()));
                 if (ds.Tables[0].Rows.Count == 1)
                 {
-                    string ime = (ds.Tables[0].Rows[0]["ime"]).ToString();
-                    string prezime = (ds.Tables[0].Rows[0]["prezime"]).ToString();
-                    string email = (ds.Tables[0].Rows[0]["email"]).ToString();
-                    string username = (ds.Tables[0].Rows[0]["username"]).ToString();
-                    string pass = (ds.Tables[0].Rows[0]["pass"]).ToString();
-                    int id_user = Int32.Parse((ds.Tables[0].Rows[0]["id_klient"]).ToString());
+                    var ime = (ds.Tables[0].Rows[0]["ime"]).ToString();
+                    var prezime = (ds.Tables[0].Rows[0]["prezime"]).ToString();
+                    var email = (ds.Tables[0].Rows[0]["email"]).ToString();
+                    var username = (ds.Tables[0].Rows[0]["username"]).ToString();
+                    var pass = (ds.Tables[0].Rows[0]["pass"]).ToString();
+                    var id_user = Int32.Parse((ds.Tables[0].Rows[0]["id_klient"]).ToString());
 
                     Session["id_korisnik"] = id_user;
                     Session["korisnik"] = ime;
@@ -48,15 +48,15 @@ namespace OnlineBooking.Pages.Korisink
             //promeni.Promeni(txtPime.Text, txtPprezime.Text, txtPemail.Text, txtPuser.Text, 
             //                txtPpass.Text, Int32.Parse(Session["id_korisnik"].ToString()));
 
-            baza.onlinebooking klient = new baza.onlinebooking();
-            DataSet ds1 = klient.pregled_karti_korisnik_profile(Int32.Parse(Session["id_korisnik"].ToString()));
+            var klient = new baza.onlinebooking();
+            var ds1 = klient.pregled_karti_korisnik_profile(Int32.Parse(Session["id_korisnik"].ToString()));
             DataList1.DataSource = ds1;
             foreach (DataTable table in ds1.Tables)
             {
                 foreach (DataRow dr in table.Rows)
                 {
-                    CultureInfo ci = new CultureInfo("mk-MK");
-                    DateTime dt = Convert.ToDateTime(dr["datum_prodazba"].ToString());
+                    var ci = new CultureInfo("mk-MK");
+                    var dt = Convert.ToDateTime(dr["datum_prodazba"].ToString());
 
 
                     dr["datum_prodazba"] = dt.ToString("dddd, dd-MMMM-yyyy", ci); ;
@@ -66,11 +66,11 @@ namespace OnlineBooking.Pages.Korisink
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            baza.onlinebooking promena = new baza.onlinebooking();
+            var promena = new baza.onlinebooking();
 
             //promena.Promeni(txtPime.Text, txtPprezime.Text, txtPemail.Text, txtPuser.Text,
             //      txtPpass.Text, Int32.Parse(Session["id_korisnik"].ToString()));
-            string odgovor = promena.Promeni(txtPime.Text, txtPprezime.Text, txtPemail.Text, txtPuser.Text,
+            var odgovor = promena.Promeni(txtPime.Text, txtPprezime.Text, txtPemail.Text, txtPuser.Text,
                     txtPpass.Text, Int32.Parse(Session["id_korisnik"].ToString()));
             lblpromena.Text = odgovor;
             if (lblpromena.Text == "OK")

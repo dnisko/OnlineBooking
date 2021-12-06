@@ -11,7 +11,7 @@ namespace OnlineBooking.Pages.Korisink
 {
 
 
-    public partial class logout
+    public partial class Logout
     {
 
         /// <summary>

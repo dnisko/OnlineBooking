@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Korisink/Korisik.Master" AutoEventWireup="true" CodeBehind="Naplata-Uspesno.aspx.cs" Inherits="OnlineBooking.Pages.Korisink.Naplata_Uspesno" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Korisink/Korisik.Master" AutoEventWireup="true" CodeBehind="NaplataUspesno.aspx.cs" Inherits="OnlineBooking.Pages.Korisink.NaplataUspesno" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
