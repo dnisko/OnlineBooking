@@ -6,14 +6,15 @@
     <title>OnlineBooking</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <meta http-equiv="imagetoolbar" content="no" />
-    <link rel="shortcut icon" a href="../../images/logo2.ico"/>
+    <link rel="shortcut icon" href="../../images/logo2.ico" />
     <link rel="stylesheet" href="../../styles/layout.css" type="text/css" />
-    <script type="text/javascript" src="../../Scripts/jquery-3.4.1.min.js" />
+    <script type="text/javascript" src="../../Scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../../scripts/jquery-ui-1.8.12.custom.min.js"></script>
     <script type="text/javascript"> 
-    function kosnicka() {
-        __doPostBack('ImageButton1', '');
-    }
+        function kosnicka()
+        {
+            __doPostBack('ImageButton1', '');
+        }
     </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -21,8 +22,8 @@
 </head>
 <body id="top">
     <form id="form" runat="server">
-        <div class="wrapper col1" >
-            <div id="header" class="clear" >
+        <div class="wrapper col1">
+            <div id="header" class="clear">
                 <div class="fl_left">
                     <h1><a href="index.aspx">BOOKING</a></h1>
                     <p>ONLINE BOOKING &#1053;&#1040; &#1050;&#1040;&#1056;&#1058;&#1048;</p>
@@ -37,22 +38,24 @@
         <div class="wrapper col1">
             <div id="topbar" class="clear">
                 <div id="login" class="fl_right">
-                    <asp:Label ID="welcomelbl" runat="server" Text="&#1044;&#1086;&#1073;&#1088;&#1077;&#1076;&#1086;&#1112;&#1076;&#1086;&#1074;&#1090;&#1077;, "></asp:Label>
-                    <asp:HyperLink ID="HyperLinkLogIn" runat="server" CssClass="hyperlink" NavigateUrl="~/login.aspx">&#1053;&#1072;&#1112;&#1072;&#1074;&#1080; &#1089;&#1077;</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLinkLogOut" runat="server" CssClass="hyperlink" NavigateUrl="~/logout.aspx" Visible="False">&#1054;&#1076;&#1083;&#1086;&#1075;&#1080;&#1088;&#1072;&#1112; &#1089;&#1077;</asp:HyperLink>
+                    <asp:Label ID="welcomelbl" runat="server" Text="Добредојдовте, "></asp:Label>
+                    <asp:HyperLink ID="HyperLinkLogIn" runat="server" CssClass="hyperlink" NavigateUrl="~/login.aspx">Најави се </asp:HyperLink>
+                    <asp:HyperLink ID="HyperLinkLogOut" runat="server" CssClass="hyperlink" NavigateUrl="~/logout.aspx" Visible="False">Одјави се </asp:HyperLink>
                     <asp:Label ID="Label1" runat="server" Text=" | "></asp:Label>
-                    <asp:HyperLink ID="HyperLinkReg" runat="server" CssClass="hyperlink" NavigateUrl="~/Register.aspx">&#1056;&#1077;&#1075;&#1080;&#1089;&#1090;&#1088;&#1080;&#1088;&#1072;&#1112; &#1089;&#1077;</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLinkProfile" runat="server" CssClass="hyperlink" NavigateUrl="~/MyProfile.aspx" Visible="False">&#1052;&#1086;&#1112; &#1055;&#1088;&#1086;&#1092;&#1080;&#1083;</asp:HyperLink>
-                     | <!--
+                    <asp:HyperLink ID="HyperLinkReg" runat="server" CssClass="hyperlink" NavigateUrl="~/Register.aspx">Регистрирај се </asp:HyperLink>
+                    <asp:HyperLink ID="HyperLinkProfile" runat="server" CssClass="hyperlink" NavigateUrl="~/MyProfile.aspx" Visible="False">Мој профил</asp:HyperLink>
+                    |
+                    <!--
                         <a href="Kosnicka.aspx">
                     <img runat="server" src="~/Sliki/kosnicka/kosnicka.jpg" width="40" height="40" alt=""/></a>
-                     --><div class="fl_right">    
-                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="../../Sliki/kosnicka/kosnicka.jpg" OnClick="ImageButton1_Click"
-                      Width="30px" ToolTip="Моја Кошничка"/>   
-                     </div>
+                     -->
+                    <div class="fl_right">
+                        <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="../../Sliki/kosnicka/kosnicka.jpg" OnClick="ImageButton1_Click"
+                            Width="30px" ToolTip="Моја Кошничка" />
+                    </div>
                 </div>
                 <ul id="topnav">
-                    <li><a href="index.aspx">&#1055;&#1086;&#1095;&#1077;&#1090;&#1085;&#1072;</a></li>
+                    <li><a href="index.aspx">Почетна</a></li>
                     <li><a href="Nastani.aspx">Настани</a></li>
                     <li><a href="Pregled.aspx">Карти</a></li>
                     <!--<li><a href="#">DropDown</a>
@@ -64,13 +67,13 @@
                     </li>
                     <li><a href="Category.aspx">Portfolio</a></li>-->
                 </ul>
-                
-                    <fieldset>
-                        <legend>Site Search</legend>
-                        <input type="text" value="Search Our Website&hellip;" onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
-                        <input type="image" id="go" src="../../images/search.gif" alt="Search" />
-                    </fieldset>
-               
+
+                <fieldset>
+                    <legend>Site Search</legend>
+                    <input type="text" value="Search Our Website&hellip;" onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
+                    <input type="image" id="go" src="../../images/search.gif" alt="Search" />
+                </fieldset>
+
             </div>
         </div>
         <!-- ####################################################################################################### -->

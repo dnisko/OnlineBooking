@@ -193,6 +193,7 @@
     <Content Include="images\search.gif" />
     <Content Include="images\search_l.gif" />
     <Content Include="images\small_shadow.gif" />
+    <Content Include="Pages\Korisink\Category.aspx" />
     <Content Include="Pages\Korisink\index.aspx" />
     <Content Include="Pages\Korisink\Korisik.Master" />
     <None Include="Properties\Settings.settings">
@@ -200,6 +201,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Pages\Korisink\Kosnicka.aspx" />
+    <Content Include="Pages\Korisink\login.aspx" />
+    <Content Include="Pages\Korisink\logout.aspx" />
+    <Content Include="Pages\Korisink\MyProfile.aspx" />
+    <Content Include="Pages\Korisink\Naplata-Uspesno.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -276,6 +282,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Korisink\Category.aspx.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Korisink\Category.aspx.designer.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Korisink\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -289,6 +302,40 @@
     </Compile>
     <Compile Include="Pages\Korisink\Korisik.Master.designer.cs">
       <DependentUpon>Korisik.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Korisink\Kosnicka.aspx.cs">
+      <DependentUpon>Kosnicka.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Korisink\Kosnicka.aspx.designer.cs">
+      <DependentUpon>Kosnicka.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Korisink\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Korisink\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Korisink\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Korisink\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Korisink\MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Korisink\MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Korisink\Naplata-Uspesno.aspx.cs">
+      <DependentUpon>Naplata-Uspesno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Korisink\Naplata-Uspesno.aspx.designer.cs">
+      <DependentUpon>Naplata-Uspesno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
