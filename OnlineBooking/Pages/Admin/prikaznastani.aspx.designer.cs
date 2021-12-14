@@ -11,7 +11,7 @@ namespace OnlineBooking.Pages.Admin
 {
 
 
-    public partial class Prikazinastani
+    public partial class Prikaznastani
     {
 
         /// <summary>

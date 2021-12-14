@@ -24,7 +24,7 @@ namespace WebService
         public readonly string Konekcija;
         public Onlinebooking()
         {
-            Konekcija = "Provider=SQLOLEDB;Data Source=Dinko;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - OleDb
+            Konekcija = "Provider=SQLOLEDB;Data Source=VIKI-LAPTOP\\SQLEXPRESS;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - OleDb
             
             //"Data Source=Dinka-PC;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - Sql
             //"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Server.MapPath("onlinebooking.mdb");// - Access

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace OnlineBooking.Pages.Admin
 {
-    public partial class Prikazinastani : System.Web.UI.Page
+    public partial class Prikaznastani : System.Web.UI.Page
     {
         baza.onlinebooking b;
         protected void Page_Load(object sender, EventArgs e)

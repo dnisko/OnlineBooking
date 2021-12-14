@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="prikazinastani.aspx.cs" Inherits="OnlineBooking.Pages.Admin.Prikazinastani" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="prikaznastani.aspx.cs" Inherits="OnlineBooking.Pages.Admin.Prikaznastani" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -28,11 +28,11 @@
 	<asp:GridView ID="gvNastani" runat="server" AutoGenerateColumns="False" 
 		EnableModelValidation="True" BackColor="LightGoldenrodYellow" 
 		BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" 
-		GridLines="None" Width="100%" onrowediting="gvNastani_RowEditing" 
-		onrowupdating="gvNastani_RowUpdating" DataKeyNames="id_nastan,naziv" 
-		onrowcancelingedit="gvNastani_RowCancelingEdit" 
-		onrowdeleting="gvNastani_RowDeleting" 
-		onrowdatabound="gvNastani_RowDataBound">
+		GridLines="None" Width="100%" onrowediting="GvNastani_RowEditing" 
+		onrowupdating="GvNastani_RowUpdating" DataKeyNames="id_nastan,naziv" 
+		onrowcancelingedit="GvNastani_RowCancelingEdit" 
+		onrowdeleting="GvNastani_RowDeleting" 
+		onrowdatabound="GvNastani_RowDataBound">
 		<AlternatingRowStyle BackColor="PaleGoldenrod" />
 		<Columns>
 			<asp:TemplateField ItemStyle-Height="20" HeaderText="Р. Број">

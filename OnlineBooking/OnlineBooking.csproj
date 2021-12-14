@@ -231,7 +231,7 @@
     <Content Include="Pages\Admin\karti.aspx" />
     <Content Include="Pages\Admin\korisnici.aspx" />
     <Content Include="Pages\Admin\pocetnaadmin.aspx" />
-    <Content Include="Pages\Admin\prikazinastani.aspx" />
+    <Content Include="Pages\Admin\prikaznastani.aspx" />
     <Content Include="Pages\Admin\vnesinastan.aspx" />
     <Content Include="Pages\Korisink\Category.aspx" />
     <Content Include="Pages\Korisink\index.aspx" />
@@ -366,12 +366,12 @@
     <Compile Include="Pages\Admin\pocetnaadmin.aspx.designer.cs">
       <DependentUpon>pocetnaadmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\prikazinastani.aspx.cs">
-      <DependentUpon>prikazinastani.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\prikaznastani.aspx.cs">
+      <DependentUpon>prikaznastani.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\prikazinastani.aspx.designer.cs">
-      <DependentUpon>prikazinastani.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\prikaznastani.aspx.designer.cs">
+      <DependentUpon>prikaznastani.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\proba.ashx.cs">
       <DependentUpon>proba.ashx</DependentUpon>
