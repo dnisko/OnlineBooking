@@ -9,7 +9,7 @@
     <div id="container" class="tabcontainer">
         <div id="Div1">
             <h1><asp:Literal ID="lblNasov" runat="server" /></h1>
-            <img class="imgl" id="imgSlika" runat="server"  alt="" width="125" height="125"/>
+            <img class="imgl" src="~/Sliki.ashx" id="imgSlika" runat="server" alt="" width="125" height="125" />
             <p><asp:Literal ID="lblSopis" runat="server" /></p>
             <p>Видео:</p>
            

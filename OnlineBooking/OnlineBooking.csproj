@@ -236,7 +236,7 @@
     <Content Include="Pages\Korisink\Category.aspx" />
     <Content Include="Pages\Korisink\index.aspx" />
     <Content Include="Pages\Korisink\Korisik.Master" />
-    <Content Include="Pages\Korisink\Sliki.ashx" />
+    <Content Include="Sliki.ashx" />
     <Content Include="Pages\Admin\Admin.Master" />
     <Content Include="Pages\Admin\proba.ashx" />
     <None Include="Properties\Settings.settings">
@@ -481,7 +481,7 @@
     <Compile Include="Pages\Korisink\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Korisink\Sliki.ashx.cs">
+    <Compile Include="Sliki.ashx.cs">
       <DependentUpon>Sliki.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
