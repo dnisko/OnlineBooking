@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ebb585e41ec74d519ab58ff8d6e4a395" Name="Diagram1">
+        <EntityTypeShape EntityType="OBWCFModel.karti" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.klient" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.komintent" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.nastan" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.objekt" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.prodazba" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.statistika" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OBWCFModel.sysdiagram" Width="1.5" PointX="2.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="OBWCFModel.FK_karti_nastan" ManuallyRouted="false" />
+        <AssociationConnector Association="OBWCFModel.FK_prodazba_karti" ManuallyRouted="false" />
+        <AssociationConnector Association="OBWCFModel.FK_prodazba_klient" ManuallyRouted="false" />
+        <AssociationConnector Association="OBWCFModel.FK_nastan_komintent" ManuallyRouted="false" />
+        <AssociationConnector Association="OBWCFModel.FK_nastan_objekt" ManuallyRouted="false" />
+        <AssociationConnector Association="OBWCFModel.kosnicka" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="karti">
+          <Key>
+            <PropertyRef Name="id_karti" />
+          </Key>
+          <Property Name="id_karti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="n_id_nastan" Type="int" Nullable="false" />
+          <Property Name="zona" Type="nvarchar" MaxLength="50" />
+          <Property Name="red" Type="nvarchar" MaxLength="100" />
+          <Property Name="mesto" Type="nvarchar" MaxLength="100" />
+          <Property Name="cena" Type="real" />
+          <Property Name="barkod" Type="varchar" MaxLength="100" />
+          <Property Name="lager" Type="numeric" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="klient">
+          <Key>
+            <PropertyRef Name="id_klient" />
+          </Key>
+          <Property Name="id_klient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="prezime" Type="nvarchar" MaxLength="100" />
+          <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="isadmin" Type="int" />
+        </EntityType>
+        <EntityType Name="komintent">
+          <Key>
+            <PropertyRef Name="id_komintent" />
+          </Key>
+          <Property Name="id_komintent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="opis" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'onlinebooking.dbo.kosnicka' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="kosnicka">
+          <Key>
+            <PropertyRef Name="k_id_karti" />
+            <PropertyRef Name="k_id_klient" />
+          </Key>
+          <Property Name="k_id_karti" Type="int" Nullable="false" />
+          <Property Name="k_id_klient" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nastan">
+          <Key>
+            <PropertyRef Name="id_nastan" />
+          </Key>
+          <Property Name="id_nastan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_id_komintent" Type="int" Nullable="false" />
+          <Property Name="o_id_objekt" Type="int" Nullable="false" />
+          <Property Name="naziv" Type="nvarchar" MaxLength="50" />
+          <Property Name="vreme" Type="nvarchar" MaxLength="30" />
+          <Property Name="slika" Type="nvarchar" MaxLength="50" />
+          <Property Name="cas" Type="nvarchar" MaxLength="5" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="kratok_opis" Type="nvarchar" MaxLength="100" />
+          <Property Name="sirok_opis" Type="nvarchar(max)" />
+          <Property Name="sajt" Type="nvarchar" MaxLength="100" />
+          <Property Name="video" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="objekt">
+          <Key>
+            <PropertyRef Name="id_objekt" />
+          </Key>
+          <Property Name="id_objekt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="100" />
+          <Property Name="grad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="prodazba">
+          <Key>
+            <PropertyRef Name="id_klient" />
+            <PropertyRef Name="id_karti" />
+          </Key>
+          <Property Name="id_klient" Type="int" Nullable="false" />
+          <Property Name="id_karti" Type="int" Nullable="false" />
+          <Property Name="datum_prodazba" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="statistika">
+          <Key>
+            <PropertyRef Name="id_statistika" />
+          </Key>
+          <Property Name="id_statistika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="opis" Type="nvarchar" MaxLength="500" />
+          <Property Name="vreme" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_karti_nastan">
+          <End Role="nastan" Type="Self.nastan" Multiplicity="1" />
+          <End Role="karti" Type="Self.karti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nastan">
+              <PropertyRef Name="id_nastan" />
+            </Principal>
+            <Dependent Role="karti">
+              <PropertyRef Name="n_id_nastan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kosnicka_karti">
+          <End Role="karti" Type="Self.karti" Multiplicity="1" />
+          <End Role="kosnicka" Type="Self.kosnicka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="karti">
+              <PropertyRef Name="id_karti" />
+            </Principal>
+            <Dependent Role="kosnicka">
+              <PropertyRef Name="k_id_karti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kosnicka_klient">
+          <End Role="klient" Type="Self.klient" Multiplicity="1" />
+          <End Role="kosnicka" Type="Self.kosnicka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klient">
+              <PropertyRef Name="id_klient" />
+            </Principal>
+            <Dependent Role="kosnicka">
+              <PropertyRef Name="k_id_klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nastan_komintent">
+          <End Role="komintent" Type="Self.komintent" Multiplicity="1" />
+          <End Role="nastan" Type="Self.nastan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="komintent">
+              <PropertyRef Name="id_komintent" />
+            </Principal>
+            <Dependent Role="nastan">
+              <PropertyRef Name="fk_id_komintent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nastan_objekt">
+          <End Role="objekt" Type="Self.objekt" Multiplicity="1" />
+          <End Role="nastan" Type="Self.nastan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="id_objekt" />
+            </Principal>
+            <Dependent Role="nastan">
+              <PropertyRef Name="o_id_objekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prodazba_karti">
+          <End Role="karti" Type="Self.karti" Multiplicity="1" />
+          <End Role="prodazba" Type="Self.prodazba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="karti">
+              <PropertyRef Name="id_karti" />
+            </Principal>
+            <Dependent Role="prodazba">
+              <PropertyRef Name="id_karti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prodazba_klient">
+          <End Role="klient" Type="Self.klient" Multiplicity="1" />
+          <End Role="prodazba" Type="Self.prodazba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klient">
+              <PropertyRef Name="id_klient" />
+            </Principal>
+            <Dependent Role="prodazba">
+              <PropertyRef Name="id_klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OBModelStoreContainer">
+          <EntitySet Name="karti" EntityType="Self.karti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="klient" EntityType="Self.klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="komintent" EntityType="Self.komintent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nastan" EntityType="Self.nastan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="objekt" EntityType="Self.objekt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prodazba" EntityType="Self.prodazba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="statistika" EntityType="Self.statistika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kosnicka" EntityType="Self.kosnicka" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[kosnicka].[k_id_karti] AS [k_id_karti], 
+[kosnicka].[k_id_klient] AS [k_id_klient]
+FROM [dbo].[kosnicka] AS [kosnicka]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_karti_nastan" Association="Self.FK_karti_nastan">
+            <End Role="nastan" EntitySet="nastan" />
+            <End Role="karti" EntitySet="karti" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kosnicka_karti" Association="Self.FK_kosnicka_karti">
+            <End Role="karti" EntitySet="karti" />
+            <End Role="kosnicka" EntitySet="kosnicka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kosnicka_klient" Association="Self.FK_kosnicka_klient">
+            <End Role="klient" EntitySet="klient" />
+            <End Role="kosnicka" EntitySet="kosnicka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nastan_komintent" Association="Self.FK_nastan_komintent">
+            <End Role="komintent" EntitySet="komintent" />
+            <End Role="nastan" EntitySet="nastan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nastan_objekt" Association="Self.FK_nastan_objekt">
+            <End Role="objekt" EntitySet="objekt" />
+            <End Role="nastan" EntitySet="nastan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prodazba_karti" Association="Self.FK_prodazba_karti">
+            <End Role="karti" EntitySet="karti" />
+            <End Role="prodazba" EntitySet="prodazba" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prodazba_klient" Association="Self.FK_prodazba_klient">
+            <End Role="klient" EntitySet="klient" />
+            <End Role="prodazba" EntitySet="prodazba" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="karti">
+          <Key>
+            <PropertyRef Name="id_karti" />
+          </Key>
+          <Property Name="id_karti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="n_id_nastan" Type="Int32" Nullable="false" />
+          <Property Name="zona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="red" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="mesto" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cena" Type="Single" />
+          <Property Name="barkod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lager" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="nastan" Relationship="Self.FK_karti_nastan" FromRole="karti" ToRole="nastan" />
+          <NavigationProperty Name="prodazbas" Relationship="Self.FK_prodazba_karti" FromRole="karti" ToRole="prodazba" />
+          <NavigationProperty Name="klients" Relationship="Self.kosnicka" FromRole="karti" ToRole="klient" />
+        </EntityType>
+        <EntityType Name="klient">
+          <Key>
+            <PropertyRef Name="id_klient" />
+          </Key>
+          <Property Name="id_klient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isadmin" Type="Int32" />
+          <NavigationProperty Name="prodazbas" Relationship="Self.FK_prodazba_klient" FromRole="klient" ToRole="prodazba" />
+          <NavigationProperty Name="kartis" Relationship="Self.kosnicka" FromRole="klient" ToRole="karti" />
+        </EntityType>
+        <EntityType Name="komintent">
+          <Key>
+            <PropertyRef Name="id_komintent" />
+          </Key>
+          <Property Name="id_komintent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="opis" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="nastan">
+          <Key>
+            <PropertyRef Name="id_nastan" />
+          </Key>
+          <Property Name="id_nastan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_id_komintent" Type="Int32" Nullable="false" />
+          <Property Name="o_id_objekt" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="vreme" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="slika" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cas" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="kratok_opis" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sirok_opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sajt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="video" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="komintent" Relationship="Self.FK_nastan_komintent" FromRole="nastan" ToRole="komintent" />
+          <NavigationProperty Name="objekt" Relationship="Self.FK_nastan_objekt" FromRole="nastan" ToRole="objekt" />
+        </EntityType>
+        <EntityType Name="objekt">
+          <Key>
+            <PropertyRef Name="id_objekt" />
+          </Key>
+          <Property Name="id_objekt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="grad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="prodazba">
+          <Key>
+            <PropertyRef Name="id_klient" />
+            <PropertyRef Name="id_karti" />
+          </Key>
+          <Property Name="id_klient" Type="Int32" Nullable="false" />
+          <Property Name="id_karti" Type="Int32" Nullable="false" />
+          <Property Name="datum_prodazba" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="karti" Relationship="Self.FK_prodazba_karti" FromRole="prodazba" ToRole="karti" />
+          <NavigationProperty Name="klient" Relationship="Self.FK_prodazba_klient" FromRole="prodazba" ToRole="klient" />
+        </EntityType>
+        <EntityType Name="statistika">
+          <Key>
+            <PropertyRef Name="id_statistika" />
+          </Key>
+          <Property Name="id_statistika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="vreme" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_karti_nastan">
+          <End Role="nastan" Type="Self.nastan" Multiplicity="1" />
+          <End Role="karti" Type="Self.karti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nastan">
+              <PropertyRef Name="id_nastan" />
+            </Principal>
+            <Dependent Role="karti">
+              <PropertyRef Name="n_id_nastan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prodazba_karti">
+          <End Role="karti" Type="Self.karti" Multiplicity="1" />
+          <End Role="prodazba" Type="Self.prodazba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="karti">
+              <PropertyRef Name="id_karti" />
+            </Principal>
+            <Dependent Role="prodazba">
+              <PropertyRef Name="id_karti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_prodazba_klient">
+          <End Role="klient" Type="Self.klient" Multiplicity="1" />
+          <End Role="prodazba" Type="Self.prodazba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klient">
+              <PropertyRef Name="id_klient" />
+            </Principal>
+            <Dependent Role="prodazba">
+              <PropertyRef Name="id_klient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nastan_komintent">
+          <End Role="komintent" Type="Self.komintent" Multiplicity="1" />
+          <End Role="nastan" Type="Self.nastan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="komintent">
+              <PropertyRef Name="id_komintent" />
+            </Principal>
+            <Dependent Role="nastan">
+              <PropertyRef Name="fk_id_komintent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nastan_objekt">
+          <End Role="objekt" Type="Self.objekt" Multiplicity="1" />
+          <End Role="nastan" Type="Self.nastan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objekt">
+              <PropertyRef Name="id_objekt" />
+            </Principal>
+            <Dependent Role="nastan">
+              <PropertyRef Name="o_id_objekt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kosnicka">
+          <End Role="karti" Type="Self.karti" Multiplicity="*" />
+          <End Role="klient" Type="Self.klient" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="OBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kartis" EntityType="Self.karti" />
+          <EntitySet Name="klients" EntityType="Self.klient" />
+          <EntitySet Name="komintents" EntityType="Self.komintent" />
+          <EntitySet Name="nastans" EntityType="Self.nastan" />
+          <EntitySet Name="objekts" EntityType="Self.objekt" />
+          <EntitySet Name="prodazbas" EntityType="Self.prodazba" />
+          <EntitySet Name="statistikas" EntityType="Self.statistika" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_karti_nastan" Association="Self.FK_karti_nastan">
+            <End Role="nastan" EntitySet="nastans" />
+            <End Role="karti" EntitySet="kartis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prodazba_karti" Association="Self.FK_prodazba_karti">
+            <End Role="karti" EntitySet="kartis" />
+            <End Role="prodazba" EntitySet="prodazbas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_prodazba_klient" Association="Self.FK_prodazba_klient">
+            <End Role="klient" EntitySet="klients" />
+            <End Role="prodazba" EntitySet="prodazbas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nastan_komintent" Association="Self.FK_nastan_komintent">
+            <End Role="komintent" EntitySet="komintents" />
+            <End Role="nastan" EntitySet="nastans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nastan_objekt" Association="Self.FK_nastan_objekt">
+            <End Role="objekt" EntitySet="objekts" />
+            <End Role="nastan" EntitySet="nastans" />
+          </AssociationSet>
+          <AssociationSet Name="kosnicka" Association="Self.kosnicka">
+            <End Role="karti" EntitySet="kartis" />
+            <End Role="klient" EntitySet="klients" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OBModelStoreContainer" CdmEntityContainer="OBContext">
+          <EntitySetMapping Name="kartis">
+            <EntityTypeMapping TypeName="OBModel.karti">
+              <MappingFragment StoreEntitySet="karti">
+                <ScalarProperty Name="id_karti" ColumnName="id_karti" />
+                <ScalarProperty Name="n_id_nastan" ColumnName="n_id_nastan" />
+                <ScalarProperty Name="zona" ColumnName="zona" />
+                <ScalarProperty Name="red" ColumnName="red" />
+                <ScalarProperty Name="mesto" ColumnName="mesto" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="barkod" ColumnName="barkod" />
+                <ScalarProperty Name="lager" ColumnName="lager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="klients">
+            <EntityTypeMapping TypeName="OBModel.klient">
+              <MappingFragment StoreEntitySet="klient">
+                <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="isadmin" ColumnName="isadmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="komintents">
+            <EntityTypeMapping TypeName="OBModel.komintent">
+              <MappingFragment StoreEntitySet="komintent">
+                <ScalarProperty Name="id_komintent" ColumnName="id_komintent" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nastans">
+            <EntityTypeMapping TypeName="OBModel.nastan">
+              <MappingFragment StoreEntitySet="nastan">
+                <ScalarProperty Name="id_nastan" ColumnName="id_nastan" />
+                <ScalarProperty Name="fk_id_komintent" ColumnName="fk_id_komintent" />
+                <ScalarProperty Name="o_id_objekt" ColumnName="o_id_objekt" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="vreme" ColumnName="vreme" />
+                <ScalarProperty Name="slika" ColumnName="slika" />
+                <ScalarProperty Name="cas" ColumnName="cas" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="kratok_opis" ColumnName="kratok_opis" />
+                <ScalarProperty Name="sirok_opis" ColumnName="sirok_opis" />
+                <ScalarProperty Name="sajt" ColumnName="sajt" />
+                <ScalarProperty Name="video" ColumnName="video" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="objekts">
+            <EntityTypeMapping TypeName="OBModel.objekt">
+              <MappingFragment StoreEntitySet="objekt">
+                <ScalarProperty Name="id_objekt" ColumnName="id_objekt" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prodazbas">
+            <EntityTypeMapping TypeName="OBModel.prodazba">
+              <MappingFragment StoreEntitySet="prodazba">
+                <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+                <ScalarProperty Name="id_karti" ColumnName="id_karti" />
+                <ScalarProperty Name="datum_prodazba" ColumnName="datum_prodazba" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="statistikas">
+            <EntityTypeMapping TypeName="OBModel.statistika">
+              <MappingFragment StoreEntitySet="statistika">
+                <ScalarProperty Name="id_statistika" ColumnName="id_statistika" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="vreme" ColumnName="vreme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="OBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="kosnicka" TypeName="OBModel.kosnicka" StoreEntitySet="kosnicka">
+            <EndProperty Name="karti">
+              <ScalarProperty Name="id_karti" ColumnName="k_id_karti" />
+            </EndProperty>
+            <EndProperty Name="klient">
+              <ScalarProperty Name="id_klient" ColumnName="k_id_klient" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

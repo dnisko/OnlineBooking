@@ -7,16 +7,16 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{50761255-2BEE-4D17-8F8D-673FE9148E01}</ProjectGuid>
+    <ProjectGuid>{E30AADC8-7503-46DC-99A5-240928B0CCC0}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebService</RootNamespace>
-    <AssemblyName>WebService</AssemblyName>
+    <RootNamespace>TestWS</RootNamespace>
+    <AssemblyName>TestWS</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44394</IISExpressSSLPort>
+    <IISExpressSSLPort>44360</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -73,32 +73,81 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
-    <Content Include="onlinebooking.asmx" />
-    <Content Include="sliki\AC-DC.jpg" />
-    <Content Include="sliki\bajaga.jpg" />
-    <Content Include="sliki\buena_vista.jpg" />
-    <Content Include="sliki\Macedonia-Estonia.jpg" />
-    <Content Include="sliki\makedonija-srbija.jpg" />
-    <Content Include="sliki\mak_dev.jpg" />
-    <Content Include="sliki\metalurg-barca.jpg" />
-    <Content Include="sliki\rab-var.JPG" />
-    <Content Include="sliki\rabotnicki-mzt.jpg" />
-    <Content Include="sliki\SWE1.jpg" />
-    <Content Include="sliki\treto_poluvreme.jpg" />
-    <Content Include="sliki\vlatko_stefanovski.jpg" />
+    <Content Include="OB.asmx" />
+    <Content Include="OBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OBModel.edmx</DependentUpon>
+      <LastGenOutput>OBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="OBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OBModel.edmx</DependentUpon>
+      <LastGenOutput>OBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\BarCodeBuilder.cs" />
-    <Compile Include="Classes\Nastan.cs" />
-    <Compile Include="onlinebooking.asmx.cs">
-      <DependentUpon>onlinebooking.asmx</DependentUpon>
+    <Compile Include="karti.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="klient.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="komintent.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="nastan.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OB.asmx.cs">
+      <DependentUpon>OB.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="objekt.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="prodazba.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="statistika.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="OBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="OBModel.edmx.diagram">
+      <DependentUpon>OBModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -109,6 +158,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebService\WebService.csproj">
+      <Project>{50761255-2BEE-4D17-8F8D-673FE9148E01}</Project>
+      <Name>WebService</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -123,9 +178,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61825</DevelopmentServerPort>
+          <DevelopmentServerPort>50295</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44394/</IISUrl>
+          <IISUrl>https://localhost:44360/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

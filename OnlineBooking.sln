@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineBooking", "OnlineBook
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\WebService.csproj", "{50761255-2BEE-4D17-8F8D-673FE9148E01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWS", "TestWS\TestWS.csproj", "{E30AADC8-7503-46DC-99A5-240928B0CCC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFCTest", "WFCTest\WFCTest.csproj", "{CF4DCFF5-574D-44F1-991B-0C65963EE0EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{50761255-2BEE-4D17-8F8D-673FE9148E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50761255-2BEE-4D17-8F8D-673FE9148E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50761255-2BEE-4D17-8F8D-673FE9148E01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E30AADC8-7503-46DC-99A5-240928B0CCC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E30AADC8-7503-46DC-99A5-240928B0CCC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E30AADC8-7503-46DC-99A5-240928B0CCC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E30AADC8-7503-46DC-99A5-240928B0CCC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4DCFF5-574D-44F1-991B-0C65963EE0EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4DCFF5-574D-44F1-991B-0C65963EE0EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4DCFF5-574D-44F1-991B-0C65963EE0EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4DCFF5-574D-44F1-991B-0C65963EE0EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
