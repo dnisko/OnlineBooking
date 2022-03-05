@@ -12,15 +12,10 @@ namespace TestWS
     using System;
     using System.Collections.Generic;
     
-    public partial class karti
+    public partial class kosnicka
     {
-        public int id_karti { get; set; }
-        public int n_id_nastan { get; set; }
-        public string zona { get; set; }
-        public string red { get; set; }
-        public string mesto { get; set; }
-        public Nullable<float> cena { get; set; }
-        public string barkod { get; set; }
-        public Nullable<decimal> lager { get; set; }
+        public int fk_id_karti { get; set; }
+        public int fk_id_klient { get; set; }
+        public int id_kosnicka { get; set; }
     }
 }

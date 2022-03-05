@@ -69,7 +69,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public List<nastan> Test1()
+        public List<nastan> Tabela_nastan()
         {
             using (OBContext oBContext = new OBContext())
             {
@@ -77,9 +77,18 @@ namespace TestWS
                 return list.ToList();
             }
         }
+        //public class MyGrouping
+        //{
+        //    int n_id_nastan { get; set; }
+        //    DateTime data { get; set; }
+        //    string naziv { get; set; }
+        //    string ime { get; set; }
+        //    string grad { get; set; }
+        //    DateTime vreme { get; set; }
+        //}
 
         [WebMethod]
-        public DataSet Tabela_nastan()
+        public DataSet lista_na_karti_DS()
         {
             context = new OBContext();
 
@@ -91,18 +100,94 @@ namespace TestWS
                        join objekt in context.objekts
                        on nastan.o_id_objekt equals objekt.id_objekt
 
+                       join karti in context.kartis
+                       on nastan.id_nastan equals karti.n_id_nastan into eKarti
+
+                       //group karti by new MyGrouping(
+                       //{
+                       //    karti.n_id_nastan,
+                       //    nastan.data,
+                       //    nastan.naziv,
+                       //    komintent.opis,
+                       //    objekt.ime,
+                       //    objekt.grad,
+                       //    nastan.vreme,
+                       //    //karti.lager
+
+                       //}) into g
                        select new
                        {
+                           //n_id_nastan = eKarti.Select(x => x.n_id_nastan),
+                           Data = nastan.data,
                            Naziv = nastan.naziv,
                            Opis = komintent.opis,
+                           Ime = objekt.ime,
                            Grad = objekt.grad,
-                           Vreme = nastan.vreme
-                       }).Distinct();
-
+                           Vreme = nastan.vreme,
+                           Lager = eKarti.Sum(x => x.lager)
+                       });//.Distinct();
+            //string SQL = "select n_id_nastan, data, naziv, opis, ime, grad, vreme, sum(lager) as lager";
+            //SQL += " from karti, nastan, objekt, komintent where";
+            //SQL += " id_nastan = n_id_nastan and id_objekt = o_id_objekt and id_komintent = fk_id_komintent";
+            //SQL += " and lager is not null";
+            //SQL += " group by n_id_nastan, naziv, opis, ime, vreme, grad, data";
+            //SQL += " order by vreme desc";
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = new DataTable();
 
             dt = LINQToDataTable(nas);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet vkupno(int id)
+        {
+            context = new OBContext();
+
+            var query = from kosnicka in context.kosnickas //into eKarti
+                        
+                        join klient in context.klients
+                        on kosnicka.fk_id_klient equals klient.id_klient
+                        
+                        join karti in context.kartis
+                        on kosnicka.fk_id_karti equals karti.id_karti
+
+                        where klient.id_klient == id
+
+                        select karti.cena;
+
+            var result = (from nastan in context.nastans
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
+                         
+                         from klient in context.klients
+                         //join karti in context.kartis
+                         //on nastan.id_nastan equals karti.n_id_nastan
+
+                         //join kosnicka in context.kosnickas
+                         //on karti.id_karti equals kosnicka.fk_id_karti
+
+                         //join klient in context.klients
+                         //on kosnicka.fk_id_klient equals klient.id_klient
+
+                         where klient.id_klient == id
+
+                         select new
+                         {
+                             Username = klient.username,
+                             Vkupno = query.Sum()
+                         }).Distinct();
+
+            string sql = "select distinct username, SUM(cena) as vkupno from klient, karti, kosnicka, nastan";
+            sql += " where id_karti=k_id_karti and id_klient=k_id_klient";
+            sql += " and id_nastan=n_id_nastan and id_klient = ?";
+            sql += " group by username";
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = new DataTable();
+
+            dt = LINQToDataTable(result);
             dataSet.Tables.Add(dt);
             return dataSet;
         }

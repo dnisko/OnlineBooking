@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWS
+namespace ConsoleTest
 {
     using System;
     using System.Collections.Generic;
     
     public partial class nastan
     {
+        public nastan()
+        {
+            this.kartis = new HashSet<karti>();
+        }
+    
         public int id_nastan { get; set; }
         public int fk_id_komintent { get; set; }
         public int o_id_objekt { get; set; }
@@ -26,5 +31,9 @@ namespace TestWS
         public string sirok_opis { get; set; }
         public string sajt { get; set; }
         public string video { get; set; }
+    
+        public virtual ICollection<karti> kartis { get; set; }
+        public virtual komintent komintent { get; set; }
+        public virtual objekt objekt { get; set; }
     }
 }

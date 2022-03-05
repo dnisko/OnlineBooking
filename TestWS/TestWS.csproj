@@ -97,6 +97,9 @@
     <Compile Include="komintent.cs">
       <DependentUpon>OBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="kosnicka.cs">
+      <DependentUpon>OBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="nastan.cs">
       <DependentUpon>OBModel.tt</DependentUpon>
     </Compile>

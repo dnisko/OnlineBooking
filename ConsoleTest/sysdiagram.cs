@@ -7,20 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWS
+namespace ConsoleTest
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class karti
+    public partial class sysdiagram
     {
-        public int id_karti { get; set; }
-        public int n_id_nastan { get; set; }
-        public string zona { get; set; }
-        public string red { get; set; }
-        public string mesto { get; set; }
-        public Nullable<float> cena { get; set; }
-        public string barkod { get; set; }
-        public Nullable<decimal> lager { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

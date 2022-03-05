@@ -7,13 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWS
+namespace ConsoleTest
 {
     using System;
     using System.Collections.Generic;
     
     public partial class klient
     {
+        public klient()
+        {
+            this.prodazbas = new HashSet<prodazba>();
+            this.kartis = new HashSet<karti>();
+        }
+    
         public int id_klient { get; set; }
         public string ime { get; set; }
         public string prezime { get; set; }
@@ -21,5 +27,8 @@ namespace TestWS
         public string username { get; set; }
         public string pass { get; set; }
         public Nullable<int> isadmin { get; set; }
+    
+        public virtual ICollection<prodazba> prodazbas { get; set; }
+        public virtual ICollection<karti> kartis { get; set; }
     }
 }

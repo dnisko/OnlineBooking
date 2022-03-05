@@ -7,20 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWS
+namespace ConsoleTest
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class karti
+    public partial class komintent
     {
-        public int id_karti { get; set; }
-        public int n_id_nastan { get; set; }
-        public string zona { get; set; }
-        public string red { get; set; }
-        public string mesto { get; set; }
-        public Nullable<float> cena { get; set; }
-        public string barkod { get; set; }
-        public Nullable<decimal> lager { get; set; }
+        public komintent()
+        {
+            this.nastans = new HashSet<nastan>();
+        }
+    
+        public int id_komintent { get; set; }
+        public string opis { get; set; }
+    
+        public virtual ICollection<nastan> nastans { get; set; }
     }
 }

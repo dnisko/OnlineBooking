@@ -7,13 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWS
+namespace ConsoleTest
 {
     using System;
     using System.Collections.Generic;
     
     public partial class karti
     {
+        public karti()
+        {
+            this.prodazbas = new HashSet<prodazba>();
+            this.klients = new HashSet<klient>();
+        }
+    
         public int id_karti { get; set; }
         public int n_id_nastan { get; set; }
         public string zona { get; set; }
@@ -22,5 +28,9 @@ namespace TestWS
         public Nullable<float> cena { get; set; }
         public string barkod { get; set; }
         public Nullable<decimal> lager { get; set; }
+    
+        public virtual nastan nastan { get; set; }
+        public virtual ICollection<prodazba> prodazbas { get; set; }
+        public virtual ICollection<klient> klients { get; set; }
     }
 }

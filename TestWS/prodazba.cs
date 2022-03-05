@@ -17,8 +17,5 @@ namespace TestWS
         public int id_klient { get; set; }
         public int id_karti { get; set; }
         public string datum_prodazba { get; set; }
-    
-        public virtual karti karti { get; set; }
-        public virtual klient klient { get; set; }
     }
 }

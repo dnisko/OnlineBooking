@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestWS
+namespace ConsoleTest
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class OBContext : DbContext
+    public partial class OBModel : DbContext
     {
-        public OBContext()
-            : base("name=OBContext")
+        public OBModel()
+            : base("name=OBModel")
         {
         }
     
@@ -28,7 +28,6 @@ namespace TestWS
         public DbSet<karti> kartis { get; set; }
         public DbSet<klient> klients { get; set; }
         public DbSet<komintent> komintents { get; set; }
-        public DbSet<kosnicka> kosnickas { get; set; }
         public DbSet<nastan> nastans { get; set; }
         public DbSet<objekt> objekts { get; set; }
         public DbSet<prodazba> prodazbas { get; set; }
