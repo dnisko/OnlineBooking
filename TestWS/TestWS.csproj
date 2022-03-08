@@ -84,6 +84,18 @@
       <DependentUpon>OBModel.edmx</DependentUpon>
       <LastGenOutput>OBModel.cs</LastGenOutput>
     </Content>
+    <Content Include="sliki\AC-DC.jpg" />
+    <Content Include="sliki\bajaga.jpg" />
+    <Content Include="sliki\buena_vista.jpg" />
+    <Content Include="sliki\Macedonia-Estonia.jpg" />
+    <Content Include="sliki\makedonija-srbija.jpg" />
+    <Content Include="sliki\mak_dev.jpg" />
+    <Content Include="sliki\metalurg-barca.jpg" />
+    <Content Include="sliki\rab-var.JPG" />
+    <Content Include="sliki\rabotnicki-mzt.jpg" />
+    <Content Include="sliki\SWE1.jpg" />
+    <Content Include="sliki\treto_poluvreme.jpg" />
+    <Content Include="sliki\vlatko_stefanovski.jpg" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -62,13 +64,74 @@ namespace TestWS
             }
             return dtReturn;
         }
-        [WebMethod]
-        public void HelloWorld()
-        {
-            HttpContext.Current.Response.Write ("Hello World");
-        }
 
         [WebMethod]
+        public string UploadFile(byte[] f, string fileName)
+        {
+            try
+            {
+                // instance a memory stream and pass the 
+                // byte array to its constructor 
+                MemoryStream ms = new MemoryStream(f);
+                // instance a filestream pointing to the 
+                // storage folder, use the original file name 
+                // to name the resulting file 
+                FileStream fs = new FileStream(System.Web.Hosting.HostingEnvironment.MapPath
+                            ("~/sliki/") + fileName, FileMode.Create);
+
+                // write the memory stream containing the original 
+                // file as a byte array to the filestream 
+                ms.WriteTo(fs);
+                // clean up 
+                ms.Close();
+                fs.Close();
+                fs.Dispose();
+                // return OK if we made it this far 
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                // return the error message if the operation fails 
+                return ex.Message.ToString();
+            }
+        }
+
+        [WebMethod, Description("Get image content")]
+        public byte[] GetImageFile(string fileName)
+        {
+            if (System.IO.File.Exists
+            (System.Web.Hosting.HostingEnvironment.MapPath
+                ("~/sliki/") + fileName))
+            {
+                return System.IO.File.ReadAllBytes(
+                  System.Web.Hosting.HostingEnvironment.MapPath
+                    ("~/sliki/") + fileName);
+            }
+            else
+            {
+                return new byte[] { 0 };
+            }
+        }
+
+
+        //###################### SELECT ###########################
+        [WebMethod]
+        public DataSet login(string username, string pass)
+        {
+            context = new OBContext();
+
+            var query = from user in context.klients
+                        where user.username == username &&
+                              user.pass == pass
+                        select user;
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+
+        }
+            [WebMethod]
         public List<nastan> Tabela_nastan()
         {
             using (OBContext oBContext = new OBContext())
@@ -205,5 +268,52 @@ namespace TestWS
             dataSet.Tables.Add(dt);
             return dataSet;
         }
-    }
+
+        [WebMethod]
+        public DataSet kosnicka(int id)
+        {
+            context = new OBContext();
+
+            var query = from nastan in context.nastans
+                        join karti in context.kartis
+                        on nastan.id_nastan equals karti.n_id_nastan
+
+                        join kosnicka in context.kosnickas
+                        on karti.id_karti equals kosnicka.fk_id_karti
+
+                        join klient in context.klients
+                        on kosnicka.fk_id_klient equals klient.id_klient
+
+                        where klient.id_klient == id
+
+                        select new { nastan, karti, kosnicka, klient };
+
+            //var query = (from nastan in context.nastans
+            //              join karti in context.kartis
+            //              on nastan.id_nastan equals karti.n_id_nastan
+
+            //              from klient in context.klients
+
+            //              where klient.id_klient == id
+
+            //              select new
+            //              {
+            //                  Username = klient.username,
+            //                  Vkupno = query1.Sum()
+            //              }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+            //###################### UPDATE ###########################
+
+
+            //###################### DELETE ###########################
+
+
+            //###################### INSERT ###########################
+        }
 }
