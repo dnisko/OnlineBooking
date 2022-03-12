@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
+using TestWS.Classes;
 
 namespace TestWS
 {
@@ -22,6 +25,8 @@ namespace TestWS
     public class OB : System.Web.Services.WebService
     {
         OBContext context = new OBContext();
+        string Konekcija = "Provider=SQLOLEDB;Data Source=VIKI-LAPTOP\\SQLEXPRESS;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - OleDb
+            
         public DataTable LINQToDataTable<T>(IEnumerable<T> varlist)
         {
             DataTable dtReturn = new DataTable();
@@ -308,12 +313,484 @@ namespace TestWS
             return dataSet;
         }
 
-            //###################### UPDATE ###########################
+        [WebMethod]
+        public DataSet pregled_karti_korisnik_profile(int id)
+        {
+            context = new OBContext();
 
+            var query = (from nastan in context.nastans
+                        join karti in context.kartis
+                        on nastan.id_nastan equals karti.n_id_nastan
 
-            //###################### DELETE ###########################
+                        join prodazba in context.prodazbas
+                        on karti.id_karti equals prodazba.id_karti
 
+                        join klient in context.klients
+                        on prodazba.id_klient equals klient.id_klient
 
-            //###################### INSERT ###########################
+                        where klient.id_klient == id
+
+                        select new
+                        {
+                            nastan, karti, prodazba, klient
+                        }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+
+            //string sql = "select distinct * from prodazba, karti, klient, nastan ";
+            //sql += "where karti.id_karti=prodazba.id_karti and klient.id_klient=prodazba.id_klient and id_nastan=n_id_nastan ";
+            //sql += "and klient.id_klient = ?";// like '%' + ? + '%'";
         }
+
+        [WebMethod]
+        public DataSet pregled_karti_korisnik(string user)
+        {
+            context = new OBContext();
+
+            var query = (from nastan in context.nastans
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
+
+                         join prodazba in context.prodazbas
+                         on karti.id_karti equals prodazba.id_karti
+
+                         join klient in context.klients
+                         on prodazba.id_klient equals klient.id_klient
+
+                         where klient.username == user
+
+                         select new
+                         {
+                             nastan,
+                             karti,
+                             prodazba,
+                             klient
+                         }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet pregled_karti_korisnici()
+        {
+            context = new OBContext();
+
+            var query = (from nastan in context.nastans
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
+
+                         join prodazba in context.prodazbas
+                         on karti.id_karti equals prodazba.id_karti
+
+                         join klient in context.klients
+                         on prodazba.id_klient equals klient.id_klient
+
+                         select new
+                         {
+                             nastan,
+                             karti,
+                             prodazba,
+                             klient
+                         }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet pregled_kupena_karta(int id_kli, int id_kar)
+        {
+            context = new OBContext();
+
+            var query = (from nastan in context.nastans
+                        join karti in context.kartis
+                        on nastan.id_nastan equals karti.n_id_nastan
+
+                        join prodazba in context.prodazbas
+                        on karti.id_karti equals prodazba.id_karti
+
+                        join klient in context.klients
+                        on prodazba.id_klient equals klient.id_klient
+
+                        where klient.id_klient == id_kli && karti.id_karti == id_kar
+
+                        select new
+                        {
+                            nastan, karti, prodazba, klient
+                        }).Distinct();
+
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+
+            string sql = "select distinct * from prodazba, karti, klient, nastan ";
+            sql += "where karti.id_karti=prodazba.id_karti and id_nastan=n_id_nastan ";
+            sql += "and klient.id_klient = prodazba.id_klient and prodazba.id_klient = ? and prodazba.id_karti = ?";
+        }
+
+        [WebMethod]
+        public DataSet Opis_DS()
+        {
+            context = new OBContext();
+
+            var query = from komintent in context.komintents
+                        select komintent;
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet Objekt_DS()
+        {
+            context = new OBContext();
+
+            var query = from objekt in context.objekts
+                        select objekt;
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        //[WebMethod]
+        //public DataSet lista_na_korisnici_po_username_DS(string username)
+        //{
+        //    context = new OBContext();
+
+        //    var query = from klient in context.klients
+        //                where klient.username.Contains(username)
+        //                select klient;
+
+
+        //    DataSet dataSet = new DataSet("myDataSet");
+        //    DataTable dt = LINQToDataTable(query);
+        //    dataSet.Tables.Add(dt);
+        //    return dataSet;
+        //}
+
+        [WebMethod]
+        public DataSet lista_na_korisnici_po_id_DS(int id)
+        {
+            context = new OBContext();
+
+            var query = from klient in context.klients
+                        where klient.id_klient == id
+                        select klient;
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_korisnici_DS()
+        {
+            context = new OBContext();
+
+            //var query = from klient in context.klients
+            //            select klient;
+
+            var query = context.klients.Select(x => x);
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_admini_DS()
+        {
+            context = new OBContext();
+
+            var query = from klient in context.klients
+                        where klient.isadmin == 1
+                        select klient;
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_top5_nastani_DS()
+        {
+            context = new OBContext();
+
+            var query = (from nastan in context.nastans
+                        select nastan).Take(5);
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_nastani_za_nastan()
+        {
+            context = new OBContext();
+
+            var query = from nastan in context.nastans
+                        orderby nastan.vreme ascending
+                         select nastan;
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_zona(int id)
+        {
+            context = new OBContext();
+
+            var query = (from karti in context.kartis
+                         where karti.n_id_nastan == id
+                        select karti.zona).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_mesto(int id, string zona)
+        {
+            context = new OBContext();
+
+            var query = (from karti in context.kartis
+                         where karti.n_id_nastan == id &&
+                               karti.zona == zona
+                         select new
+                         {
+                             karti.zona,
+                             karti.mesto
+                         }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_red(int id, string zona, string mesto)
+        {
+            context = new OBContext();
+
+            var query = (from karti in context.kartis
+                         where karti.n_id_nastan == id &&
+                               karti.zona == zona &&
+                               karti.mesto == mesto
+                         select new
+                         {
+                             karti.zona,
+                             karti.mesto,
+                             karti.red
+                         }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_cena(int id, string zona, string mesto, string red)
+        {
+            context = new OBContext();
+
+            var query = (from karti in context.kartis
+                         where karti.n_id_nastan == id &&
+                               karti.zona == zona &&
+                               karti.mesto == mesto &&
+                               karti.red == red
+                         select new
+                         {
+                             karti.id_karti,
+                             karti.cena
+                         }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_nastani_DS()
+        {
+            context = new OBContext();
+
+            var query = from objekt in context.objekts
+                        join nastan in context.nastans
+                        on objekt.id_objekt equals nastan.o_id_objekt
+
+                        join komintent in context.komintents
+                        on nastan.fk_id_komintent equals komintent.id_komintent
+
+                        orderby nastan.vreme descending
+
+                        select new
+                        {
+                            nastan, objekt, komintent
+                        };
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_kupeni_karti_za_nastani_po_naziv(string naziv)
+        {
+            context = new OBContext();
+            var query = (from objekt in context.objekts
+                        join nastan in context.nastans
+                        on objekt.id_objekt equals nastan.o_id_objekt
+
+                        join komintent in context.komintents
+                        on nastan.o_id_objekt equals komintent.id_komintent
+
+                        join karti in context.kartis
+                        on nastan.id_nastan equals karti.n_id_nastan
+
+                        join prodazba in context.prodazbas
+                        on karti.id_karti equals prodazba.id_karti
+
+                        join klient in context.klients
+                        on prodazba.id_klient equals klient.id_klient
+
+                        where nastan.naziv.Contains(naziv)
+
+                        select new
+                        {
+                            nastan, klient, objekt, komintent, karti, prodazba
+                        }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public DataSet lista_na_kupeni_karti_za_nastani()
+        {
+            context = new OBContext();
+            var query = (from objekt in context.objekts
+                         join nastan in context.nastans
+                         on objekt.id_objekt equals nastan.o_id_objekt
+
+                         join komintent in context.komintents
+                         on nastan.o_id_objekt equals komintent.id_komintent
+
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
+
+                         join prodazba in context.prodazbas
+                         on karti.id_karti equals prodazba.id_karti
+
+                         join klient in context.klients
+                         on prodazba.id_klient equals klient.id_klient
+
+                         select new
+                         {
+                             nastan,
+                             klient,
+                             objekt,
+                             komintent,
+                             karti,
+                             prodazba
+                         }).Distinct();
+
+            DataSet dataSet = new DataSet("myDataSet");
+            DataTable dt = LINQToDataTable(query);
+            dataSet.Tables.Add(dt);
+            return dataSet;
+        }
+
+        [WebMethod]
+        public Nastan NastanInfo(int id)
+        {
+            Nastan ns = null;
+            string sql;
+            using (OleDbConnection CNN = new OleDbConnection(Konekcija))
+            {
+                sql = "select id_nastan, naziv, vreme, slika, cas, kratok_opis, sirok_opis, sajt, video";
+                sql += " from nastan where id_nastan={0}";
+                OleDbCommand komanda = new OleDbCommand(string.Format(sql, id), CNN);
+                CNN.Open();
+                OleDbDataReader reader = komanda.ExecuteReader();
+                if (reader.Read())
+                {
+                    ns = new Nastan();
+                    ns.Id = reader.GetInt32(0);
+                    ns.Naziv = reader.GetString(1);
+                    ns.Vreme = reader.GetString(2);
+                    ns.Slika = reader.GetString(3);
+                    ns.Cas = reader.GetString(4);
+                    ns.Kopis = reader.GetString(5);
+                    ns.Sopis = reader.GetString(6);
+                    ns.Sajt = reader.GetString(7);
+                    ns.Video = reader.GetString(8);
+                }
+            }
+            return ns;
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string[] GetCustomers(string prefix)
+        {
+            List<string> customers = new List<string>();
+            using (OleDbConnection conn = new OleDbConnection(Konekcija))
+            {
+                using (OleDbCommand cmd = new OleDbCommand())
+                {
+                    cmd.CommandText = "select * from klient where " +
+                    "ime like @SearchText + '%'";
+                    cmd.Parameters.AddWithValue("@SearchText", prefix);
+                    cmd.Connection = conn;
+                    conn.Open();
+                    using (OleDbDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            customers.Add(string.Format("{0}-{1}", sdr["ime"], sdr["id_klient"]));
+                        }
+                    }
+                    conn.Close();
+                }
+                return customers.ToArray();
+            }
+        }
+        //###################### UPDATE ###########################
+
+
+        //###################### DELETE ###########################
+
+
+        //###################### INSERT ###########################
+    }
 }

@@ -100,6 +100,8 @@
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\BarCodeBuilder.cs" />
+    <Compile Include="Classes\Nastan.cs" />
     <Compile Include="karti.cs">
       <DependentUpon>OBModel.tt</DependentUpon>
     </Compile>

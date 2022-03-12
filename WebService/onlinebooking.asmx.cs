@@ -479,6 +479,40 @@ namespace WebService
         }
         //################################ UPDATE ###############################
         [WebMethod]
+        public string napravi_admin(int id)
+        {
+            OleDbConnection CNN = null;
+            OleDbCommand CMD = null;
+            string odgovor = null;
+            string sql = "update klient set isadmin=1 where id_klient=?";
+            string sql1 = "select username from klient where id_klient=?";
+            CNN = new OleDbConnection(Konekcija);
+            CNN.Open();
+
+            CMD = new OleDbCommand(sql, CNN);
+            CMD.Parameters.AddWithValue("p1", id);
+            int broj = CMD.ExecuteNonQuery();
+            if (broj > 0)
+            {
+                OleDbCommand CMD1 = null;
+                CMD1 = new OleDbCommand(sql1, CNN);
+                CMD1.Parameters.AddWithValue("p1", id);
+                OleDbDataReader rsuser = CMD1.ExecuteReader();
+                rsuser.Read();
+                string user = rsuser["username"].ToString();
+                odgovor = "Успешно го направивте корисникот со username: " + user + " во администратор";
+
+                rsuser.Close();
+            }
+            else
+            {
+                odgovor = "Се случи грешка, обиди се повторно";
+            }
+            CNN.Close();
+
+            return odgovor;
+        }
+        [WebMethod]
         public string Promeni(string Ime, string Prezime, string email, string User, string Pass, int Id)
         {
             return Promeni1(Ime, Prezime, email, User, Pass, Id);
@@ -930,41 +964,6 @@ namespace WebService
         }
 
         [WebMethod]
-        public string napravi_admin(int id)
-        {
-            OleDbConnection CNN = null;
-            OleDbCommand CMD = null;
-            string odgovor = null;
-            string sql = "update klient set isadmin=1 where id_klient=?";
-            string sql1 = "select username from klient where id_klient=?";
-            CNN = new OleDbConnection(Konekcija);
-            CNN.Open();
-
-            CMD = new OleDbCommand(sql, CNN);
-            CMD.Parameters.AddWithValue("p1", id);
-            int broj = CMD.ExecuteNonQuery();
-            if (broj > 0)
-            {
-                OleDbCommand CMD1 = null;
-                CMD1 = new OleDbCommand(sql1, CNN);
-                CMD1.Parameters.AddWithValue("p1", id);
-                OleDbDataReader rsuser = CMD1.ExecuteReader();
-                rsuser.Read();
-                string user = rsuser["username"].ToString();
-                odgovor = "Успешно го направивте корисникот со username: " + user + " во администратор";
-
-                rsuser.Close();
-            }
-            else
-            {
-                odgovor = "Се случи грешка, обиди се повторно";
-            }
-            CNN.Close();
-
-            return odgovor;
-        }
-
-        [WebMethod]
         public DataSet lista_na_top5_nastani_DS()
         {
             OleDbConnection CNN = null;
@@ -1227,7 +1226,7 @@ namespace WebService
             return ns;
         }
 
-        [WebMethod]
+        [WebMethod] //asd
         public DataSet data_DS()
         {
             OleDbConnection CNN = null;
