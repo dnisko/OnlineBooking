@@ -477,6 +477,7 @@ namespace WebService
             CNN.Close();
             return odgovor;
         }
+
         //################################ UPDATE ###############################
         [WebMethod]
         public string napravi_admin(int id)
@@ -635,6 +636,7 @@ namespace WebService
 
             return odgovor;
         }
+
         //################################ DELETE ###############################
 
         [WebMethod]
@@ -722,6 +724,7 @@ namespace WebService
             CNN.Close();
             return odgovor;
         }
+
         //################################ SELECT ###############################
 
         [WebMethod]

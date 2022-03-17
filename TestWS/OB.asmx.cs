@@ -25,8 +25,8 @@ namespace TestWS
     public class OB : System.Web.Services.WebService
     {
         OBContext context = new OBContext();
-        string Konekcija = "Provider=SQLOLEDB;Data Source=VIKI-LAPTOP\\SQLEXPRESS;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - OleDb
-            
+        readonly string Konekcija = "Provider=SQLOLEDB;Data Source=VIKI-LAPTOP\\SQLEXPRESS;Initial Catalog=onlinebooking;Trusted_Connection=Yes;";// - OleDb
+
         public DataTable LINQToDataTable<T>(IEnumerable<T> varlist)
         {
             DataTable dtReturn = new DataTable();
@@ -121,7 +121,7 @@ namespace TestWS
 
         //###################### SELECT ###########################
         [WebMethod]
-        public DataSet login(string username, string pass)
+        public DataSet Login(string username, string pass)
         {
             context = new OBContext();
 
@@ -136,12 +136,25 @@ namespace TestWS
             return dataSet;
 
         }
-            [WebMethod]
+        [WebMethod]
         public List<nastan> Tabela_nastan()
         {
             using (OBContext oBContext = new OBContext())
             {
                 var list = from nastan in oBContext.nastans select nastan;
+                return list.ToList();
+            }
+        }
+
+        [WebMethod]
+        public List<nastan> Test(int id, string name)
+        {
+            using (OBContext oBContext = new OBContext())
+            {
+                var list = from nastan in oBContext.nastans
+                           where nastan.id_nastan == id ||
+                                 nastan.naziv == name
+                           select nastan;
                 return list.ToList();
             }
         }
@@ -156,7 +169,7 @@ namespace TestWS
         //}
 
         [WebMethod]
-        public DataSet lista_na_karti_DS()
+        public DataSet Lista_na_karti_DS()
         {
             context = new OBContext();
 
@@ -209,15 +222,15 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet vkupno(int id)
+        public DataSet Vkupno(int id)
         {
             context = new OBContext();
 
             var query = from kosnicka in context.kosnickas //into eKarti
-                        
+
                         join klient in context.klients
                         on kosnicka.fk_id_klient equals klient.id_klient
-                        
+
                         join karti in context.kartis
                         on kosnicka.fk_id_karti equals karti.id_karti
 
@@ -226,26 +239,26 @@ namespace TestWS
                         select karti.cena;
 
             var result = (from nastan in context.nastans
-                         join karti in context.kartis
-                         on nastan.id_nastan equals karti.n_id_nastan
-                         
-                         from klient in context.klients
-                         //join karti in context.kartis
-                         //on nastan.id_nastan equals karti.n_id_nastan
+                          join karti in context.kartis
+                          on nastan.id_nastan equals karti.n_id_nastan
 
-                         //join kosnicka in context.kosnickas
-                         //on karti.id_karti equals kosnicka.fk_id_karti
+                          from klient in context.klients
+                              //join karti in context.kartis
+                              //on nastan.id_nastan equals karti.n_id_nastan
 
-                         //join klient in context.klients
-                         //on kosnicka.fk_id_klient equals klient.id_klient
+                              //join kosnicka in context.kosnickas
+                              //on karti.id_karti equals kosnicka.fk_id_karti
 
-                         where klient.id_klient == id
+                              //join klient in context.klients
+                              //on kosnicka.fk_id_klient equals klient.id_klient
 
-                         select new
-                         {
-                             Username = klient.username,
-                             Vkupno = query.Sum()
-                         }).Distinct();
+                          where klient.id_klient == id
+
+                          select new
+                          {
+                              Username = klient.username,
+                              Vkupno = query.Sum()
+                          }).Distinct();
 
             string sql = "select distinct username, SUM(cena) as vkupno from klient, karti, kosnicka, nastan";
             sql += " where id_karti=k_id_karti and id_klient=k_id_klient";
@@ -260,8 +273,8 @@ namespace TestWS
             return dataSet;
         }
 
-        [WebMethod(Description = "Барај по корисничко име", MessageName ="test")]
-        public DataSet lista_na_korisnici_po_username_DS(string username)
+        [WebMethod(Description = "Барај по корисничко име", MessageName = "test")]
+        public DataSet Lista_na_korisnici_po_username_DS(string username)
         {
             context = new OBContext();
             var nas = from klient in context.klients
@@ -275,7 +288,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet kosnicka(int id)
+        public DataSet Kosnicka(int id)
         {
             context = new OBContext();
 
@@ -314,26 +327,26 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet pregled_karti_korisnik_profile(int id)
+        public DataSet Pregled_karti_korisnik_profile(int id)
         {
             context = new OBContext();
 
             var query = (from nastan in context.nastans
-                        join karti in context.kartis
-                        on nastan.id_nastan equals karti.n_id_nastan
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
 
-                        join prodazba in context.prodazbas
-                        on karti.id_karti equals prodazba.id_karti
+                         join prodazba in context.prodazbas
+                         on karti.id_karti equals prodazba.id_karti
 
-                        join klient in context.klients
-                        on prodazba.id_klient equals klient.id_klient
+                         join klient in context.klients
+                         on prodazba.id_klient equals klient.id_klient
 
-                        where klient.id_klient == id
+                         where klient.id_klient == id
 
-                        select new
-                        {
-                            nastan, karti, prodazba, klient
-                        }).Distinct();
+                         select new
+                         {
+                             nastan, karti, prodazba, klient
+                         }).Distinct();
 
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = LINQToDataTable(query);
@@ -346,7 +359,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet pregled_karti_korisnik(string user)
+        public DataSet Pregled_karti_korisnik(string user)
         {
             context = new OBContext();
 
@@ -377,7 +390,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet pregled_karti_korisnici()
+        public DataSet Pregled_karti_korisnici()
         {
             context = new OBContext();
 
@@ -406,36 +419,32 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet pregled_kupena_karta(int id_kli, int id_kar)
+        public DataSet Pregled_kupena_karta(int id_kli, int id_kar)
         {
             context = new OBContext();
 
             var query = (from nastan in context.nastans
-                        join karti in context.kartis
-                        on nastan.id_nastan equals karti.n_id_nastan
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
 
-                        join prodazba in context.prodazbas
-                        on karti.id_karti equals prodazba.id_karti
+                         join prodazba in context.prodazbas
+                         on karti.id_karti equals prodazba.id_karti
 
-                        join klient in context.klients
-                        on prodazba.id_klient equals klient.id_klient
+                         join klient in context.klients
+                         on prodazba.id_klient equals klient.id_klient
 
-                        where klient.id_klient == id_kli && karti.id_karti == id_kar
+                         where klient.id_klient == id_kli && karti.id_karti == id_kar
 
-                        select new
-                        {
-                            nastan, karti, prodazba, klient
-                        }).Distinct();
+                         select new
+                         {
+                             nastan, karti, prodazba, klient
+                         }).Distinct();
 
 
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = LINQToDataTable(query);
             dataSet.Tables.Add(dt);
             return dataSet;
-
-            string sql = "select distinct * from prodazba, karti, klient, nastan ";
-            sql += "where karti.id_karti=prodazba.id_karti and id_nastan=n_id_nastan ";
-            sql += "and klient.id_klient = prodazba.id_klient and prodazba.id_klient = ? and prodazba.id_karti = ?";
         }
 
         [WebMethod]
@@ -483,7 +492,7 @@ namespace TestWS
         //}
 
         [WebMethod]
-        public DataSet lista_na_korisnici_po_id_DS(int id)
+        public DataSet Lista_na_korisnici_po_id_DS(int id)
         {
             context = new OBContext();
 
@@ -498,7 +507,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_korisnici_DS()
+        public DataSet Lista_na_korisnici_DS()
         {
             context = new OBContext();
 
@@ -514,7 +523,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_admini_DS()
+        public DataSet Lista_na_admini_DS()
         {
             context = new OBContext();
 
@@ -529,12 +538,12 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_top5_nastani_DS()
+        public DataSet Lista_na_top5_nastani_DS()
         {
             context = new OBContext();
 
             var query = (from nastan in context.nastans
-                        select nastan).Take(5);
+                         select nastan).Take(5);
 
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = LINQToDataTable(query);
@@ -543,13 +552,13 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_nastani_za_nastan()
+        public DataSet Lista_na_nastani_za_nastan()
         {
             context = new OBContext();
 
             var query = from nastan in context.nastans
                         orderby nastan.vreme ascending
-                         select nastan;
+                        select nastan;
 
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = LINQToDataTable(query);
@@ -558,13 +567,13 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_zona(int id)
+        public DataSet Lista_na_zona(int id)
         {
             context = new OBContext();
 
             var query = (from karti in context.kartis
                          where karti.n_id_nastan == id
-                        select karti.zona).Distinct();
+                         select karti.zona).Distinct();
 
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = LINQToDataTable(query);
@@ -573,7 +582,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_mesto(int id, string zona)
+        public DataSet Lista_na_mesto(int id, string zona)
         {
             context = new OBContext();
 
@@ -593,7 +602,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_red(int id, string zona, string mesto)
+        public DataSet Lista_na_red(int id, string zona, string mesto)
         {
             context = new OBContext();
 
@@ -615,7 +624,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_cena(int id, string zona, string mesto, string red)
+        public DataSet Lista_na_cena(int id, string zona, string mesto, string red)
         {
             context = new OBContext();
 
@@ -637,7 +646,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_nastani_DS()
+        public DataSet Lista_na_nastani_DS()
         {
             context = new OBContext();
 
@@ -662,31 +671,31 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_kupeni_karti_za_nastani_po_naziv(string naziv)
+        public DataSet Lista_na_kupeni_karti_za_nastani_po_naziv(string naziv)
         {
             context = new OBContext();
             var query = (from objekt in context.objekts
-                        join nastan in context.nastans
-                        on objekt.id_objekt equals nastan.o_id_objekt
+                         join nastan in context.nastans
+                         on objekt.id_objekt equals nastan.o_id_objekt
 
-                        join komintent in context.komintents
-                        on nastan.o_id_objekt equals komintent.id_komintent
+                         join komintent in context.komintents
+                         on nastan.o_id_objekt equals komintent.id_komintent
 
-                        join karti in context.kartis
-                        on nastan.id_nastan equals karti.n_id_nastan
+                         join karti in context.kartis
+                         on nastan.id_nastan equals karti.n_id_nastan
 
-                        join prodazba in context.prodazbas
-                        on karti.id_karti equals prodazba.id_karti
+                         join prodazba in context.prodazbas
+                         on karti.id_karti equals prodazba.id_karti
 
-                        join klient in context.klients
-                        on prodazba.id_klient equals klient.id_klient
+                         join klient in context.klients
+                         on prodazba.id_klient equals klient.id_klient
 
-                        where nastan.naziv.Contains(naziv)
+                         where nastan.naziv.Contains(naziv)
 
-                        select new
-                        {
-                            nastan, klient, objekt, komintent, karti, prodazba
-                        }).Distinct();
+                         select new
+                         {
+                             nastan, klient, objekt, komintent, karti, prodazba
+                         }).Distinct();
 
             DataSet dataSet = new DataSet("myDataSet");
             DataTable dt = LINQToDataTable(query);
@@ -695,7 +704,7 @@ namespace TestWS
         }
 
         [WebMethod]
-        public DataSet lista_na_kupeni_karti_za_nastani()
+        public DataSet Lista_na_kupeni_karti_za_nastani()
         {
             context = new OBContext();
             var query = (from objekt in context.objekts
@@ -785,12 +794,79 @@ namespace TestWS
                 return customers.ToArray();
             }
         }
+
         //###################### UPDATE ###########################
 
+        [WebMethod]
+        public string Napravi_admin(int id)
+        {
+            context = new OBContext();
 
-        //###################### DELETE ###########################
+            var result = context.klients.Where(x => x.id_klient == id).FirstOrDefault();
+            switch (result.isadmin)
+            {
+                case 1:
+                    return "Already an admin";
+                default:
+                    result.isadmin = 1;
+                    context.SaveChanges();
+                    return "OK";
+            }
+            //return result.isadmin == 1 ? "OK" : "Already an admin";
+        }
+
+        [WebMethod]
+        public string Promeni(string Ime, string Prezime, string Email, string User, string Pass, int Id)
+        {
+            context = new OBContext();
+
+            var result = context.klients.Where(x => x.id_klient == Id || x.username == User).FirstOrDefault();
+
+            if (result == null)
+            {
+                return "Null";
+            }
+            else
+            {
+
+                result.ime = Ime;
+                result.prezime = Prezime;
+                result.email = Email;
+                result.username = User;
+                result.pass = Pass;
+
+                context.SaveChanges();
+                return "OK";
+            }
+
+        }
+
+        public string Promeni_nastan(int opis, int objekt, string naziv, string vreme, int id)
+        {
+            context = new OBContext();
+
+            var result = context.nastans.Where(x => x.id_nastan == id).FirstOrDefault();
+
+            if (result == null)
+            {
+                return "Null";
+            }
+            else
+            {
+
+                result.fk_id_komintent = opis;
+                result.o_id_objekt = objekt;
+                result.naziv = naziv;
+                result.vreme = vreme;
+
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+
+            //###################### DELETE ###########################
 
 
-        //###################### INSERT ###########################
-    }
+            //###################### INSERT ###########################
+        }
 }
