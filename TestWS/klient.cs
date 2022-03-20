@@ -20,6 +20,6 @@ namespace TestWS
         public string email { get; set; }
         public string username { get; set; }
         public string pass { get; set; }
-        public Nullable<int> isadmin { get; set; }
+        public bool isadmin { get; set; }
     }
 }

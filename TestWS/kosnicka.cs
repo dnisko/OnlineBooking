@@ -14,8 +14,8 @@ namespace TestWS
     
     public partial class kosnicka
     {
+        public int id_kosnicka { get; set; }
         public int fk_id_karti { get; set; }
         public int fk_id_klient { get; set; }
-        public int id_kosnicka { get; set; }
     }
 }

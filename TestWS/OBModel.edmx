@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="onlinebookingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="karti">
           <Key>
             <PropertyRef Name="id_karti" />
@@ -28,7 +28,7 @@
           <Property Name="email" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="pass" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="isadmin" Type="int" />
+          <Property Name="isadmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="komintent">
           <Key>
@@ -41,9 +41,9 @@
           <Key>
             <PropertyRef Name="id_kosnicka" />
           </Key>
+          <Property Name="id_kosnicka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fk_id_karti" Type="int" Nullable="false" />
           <Property Name="fk_id_klient" Type="int" Nullable="false" />
-          <Property Name="id_kosnicka" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="nastan">
           <Key>
@@ -181,7 +181,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="OBModelStoreContainer">
+        <EntityContainer Name="onlinebookingModelStoreContainer">
           <EntitySet Name="karti" EntityType="Self.karti" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="klient" EntityType="Self.klient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="komintent" EntityType="Self.komintent" Schema="dbo" store:Type="Tables" />
@@ -224,7 +224,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="OBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="onlinebookingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="karti">
           <Key>
             <PropertyRef Name="id_karti" />
@@ -237,7 +237,7 @@
           <Property Name="cena" Type="Single" />
           <Property Name="barkod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="lager" Type="Decimal" Precision="10" Scale="0" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="klient">
           <Key>
             <PropertyRef Name="id_klient" />
@@ -248,7 +248,7 @@
           <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="pass" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="isadmin" Type="Int32" />
+          <Property Name="isadmin" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="komintent">
           <Key>
@@ -261,10 +261,10 @@
           <Key>
             <PropertyRef Name="id_kosnicka" />
           </Key>
+          <Property Name="id_kosnicka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fk_id_karti" Type="Int32" Nullable="false" />
           <Property Name="fk_id_klient" Type="Int32" Nullable="false" />
-          <Property Name="id_kosnicka" Type="Int32" Nullable="false" />
-          </EntityType>
+        </EntityType>
         <EntityType Name="nastan">
           <Key>
             <PropertyRef Name="id_nastan" />
@@ -281,7 +281,7 @@
           <Property Name="sirok_opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sajt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="video" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          </EntityType>
+        </EntityType>
         <EntityType Name="objekt">
           <Key>
             <PropertyRef Name="id_objekt" />
@@ -445,9 +445,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="OBModelStoreContainer" CdmEntityContainer="OBContext">
+        <EntityContainerMapping StorageEntityContainer="onlinebookingModelStoreContainer" CdmEntityContainer="OBContext">
           <EntitySetMapping Name="kartis">
-            <EntityTypeMapping TypeName="OBModel.karti">
+            <EntityTypeMapping TypeName="onlinebookingModel.karti">
               <MappingFragment StoreEntitySet="karti">
                 <ScalarProperty Name="id_karti" ColumnName="id_karti" />
                 <ScalarProperty Name="n_id_nastan" ColumnName="n_id_nastan" />
@@ -461,7 +461,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="klients">
-            <EntityTypeMapping TypeName="OBModel.klient">
+            <EntityTypeMapping TypeName="onlinebookingModel.klient">
               <MappingFragment StoreEntitySet="klient">
                 <ScalarProperty Name="id_klient" ColumnName="id_klient" />
                 <ScalarProperty Name="ime" ColumnName="ime" />
@@ -474,7 +474,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="komintents">
-            <EntityTypeMapping TypeName="OBModel.komintent">
+            <EntityTypeMapping TypeName="onlinebookingModel.komintent">
               <MappingFragment StoreEntitySet="komintent">
                 <ScalarProperty Name="id_komintent" ColumnName="id_komintent" />
                 <ScalarProperty Name="opis" ColumnName="opis" />
@@ -482,16 +482,16 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="kosnickas">
-            <EntityTypeMapping TypeName="OBModel.kosnicka">
+            <EntityTypeMapping TypeName="onlinebookingModel.kosnicka">
               <MappingFragment StoreEntitySet="kosnicka">
+                <ScalarProperty Name="id_kosnicka" ColumnName="id_kosnicka" />
                 <ScalarProperty Name="fk_id_karti" ColumnName="fk_id_karti" />
                 <ScalarProperty Name="fk_id_klient" ColumnName="fk_id_klient" />
-                <ScalarProperty Name="id_kosnicka" ColumnName="id_kosnicka" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="nastans">
-            <EntityTypeMapping TypeName="OBModel.nastan">
+            <EntityTypeMapping TypeName="onlinebookingModel.nastan">
               <MappingFragment StoreEntitySet="nastan">
                 <ScalarProperty Name="id_nastan" ColumnName="id_nastan" />
                 <ScalarProperty Name="fk_id_komintent" ColumnName="fk_id_komintent" />
@@ -509,7 +509,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="objekts">
-            <EntityTypeMapping TypeName="OBModel.objekt">
+            <EntityTypeMapping TypeName="onlinebookingModel.objekt">
               <MappingFragment StoreEntitySet="objekt">
                 <ScalarProperty Name="id_objekt" ColumnName="id_objekt" />
                 <ScalarProperty Name="ime" ColumnName="ime" />
@@ -518,7 +518,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="prodazbas">
-            <EntityTypeMapping TypeName="OBModel.prodazba">
+            <EntityTypeMapping TypeName="onlinebookingModel.prodazba">
               <MappingFragment StoreEntitySet="prodazba">
                 <ScalarProperty Name="id_klient" ColumnName="id_klient" />
                 <ScalarProperty Name="id_karti" ColumnName="id_karti" />
@@ -527,7 +527,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="statistikas">
-            <EntityTypeMapping TypeName="OBModel.statistika">
+            <EntityTypeMapping TypeName="onlinebookingModel.statistika">
               <MappingFragment StoreEntitySet="statistika">
                 <ScalarProperty Name="id_statistika" ColumnName="id_statistika" />
                 <ScalarProperty Name="opis" ColumnName="opis" />
@@ -536,7 +536,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="OBModel.sysdiagram">
+            <EntityTypeMapping TypeName="onlinebookingModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />

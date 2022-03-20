@@ -208,12 +208,12 @@ namespace WebService
         }
 
         [WebMethod]
-        public string vnesi_nastan(string naziv, int opis, int objekt, string slika, string data, string cas)
+        public string vnesi_nastan(string naziv, int objekt, int opis, string data, string slika, string cas)
         {
             return Vnesi_nastan(naziv, opis, objekt, slika, data, cas);
         }
 
-        public string Vnesi_nastan(string na, int op, int ob, string sl, string da, string ca)
+        public string Vnesi_nastan(string na, int ob, int op, string da, string sl, string ca)
         {
             OleDbConnection CNN = null;
             CNN = new OleDbConnection(Konekcija);

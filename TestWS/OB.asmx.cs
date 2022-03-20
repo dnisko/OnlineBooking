@@ -345,7 +345,10 @@ namespace TestWS
 
                          select new
                          {
-                             nastan, karti, prodazba, klient
+                             nastan,
+                             karti,
+                             prodazba,
+                             klient
                          }).Distinct();
 
             DataSet dataSet = new DataSet("myDataSet");
@@ -437,7 +440,10 @@ namespace TestWS
 
                          select new
                          {
-                             nastan, karti, prodazba, klient
+                             nastan,
+                             karti,
+                             prodazba,
+                             klient
                          }).Distinct();
 
 
@@ -528,7 +534,7 @@ namespace TestWS
             context = new OBContext();
 
             var query = from klient in context.klients
-                        where klient.isadmin == 1
+                        where klient.isadmin
                         select klient;
 
             DataSet dataSet = new DataSet("myDataSet");
@@ -661,7 +667,9 @@ namespace TestWS
 
                         select new
                         {
-                            nastan, objekt, komintent
+                            nastan,
+                            objekt,
+                            komintent
                         };
 
             DataSet dataSet = new DataSet("myDataSet");
@@ -694,7 +702,12 @@ namespace TestWS
 
                          select new
                          {
-                             nastan, klient, objekt, komintent, karti, prodazba
+                             nastan,
+                             klient,
+                             objekt,
+                             komintent,
+                             karti,
+                             prodazba
                          }).Distinct();
 
             DataSet dataSet = new DataSet("myDataSet");
@@ -743,7 +756,86 @@ namespace TestWS
         public Nastan NastanInfo(int id)
         {
             Nastan ns = null;
+            context = new OBContext();
+            ns = new Nastan();
+            var query = from nastan in context.nastans
+                        where nastan.id_nastan == id
+                        select nastan;
+            //{
+
+            //ID = ns.Id == nastan.id_nastan,
+            //naziv = ns.Naziv == nastan.naziv,
+            //vreme = ns.Vreme == nastan.vreme,
+            //slika = ns.Slika == nastan.slika,
+            //cas = ns.Cas == nastan.cas,
+            //kratok_opis = ns.Kopis == nastan.kratok_opis,
+            //sirok_opis = ns.Sopis == nastan.sirok_opis,
+            //sajt = ns.Sajt == nastan.sajt,
+            //video = ns.Video == nastan.video
+
+            //ID = nastan.id_nastan,
+            //naziv = nastan.naziv,
+            //vreme = nastan.vreme,
+            //slika = nastan.slika,
+            //cas = nastan.cas,
+            //kratok_opis = nastan.kratok_opis,
+            //sirok_opis = nastan.sirok_opis,
+            //sajt = nastan.sajt,
+            //video = nastan.video
+            //};
+            ns.Id = (from q in query select q.id_nastan).First();
+            ns.Naziv = (from q in query select q.naziv).First();
+            ns.Vreme = (from q in query select q.vreme).First();
+            ns.Slika = (from q in query select q.slika).First();
+            ns.Cas = (from q in query select q.cas).First();
+            ns.Kopis = (from q in query select q.kratok_opis).First();
+            ns.Sopis = (from q in query select q.sirok_opis).First();
+            ns.Sajt = (from q in query select q.sajt).First();
+            ns.Video = (from q in query select q.video).First();
+            return ns;
+        }
+        [WebMethod]
+        public Nastan NastanInfoStar(int id)
+        {
+            Nastan ns = null;
+            //context = new OBContext();
             string sql;
+            //ns = new Nastan();
+            //var query = from nastan in context.nastans
+            //            where nastan.id_nastan == id
+            //            select new
+            //            {
+
+            //                //ID = ns.Id == nastan.id_nastan,
+            //                //naziv = ns.Naziv == nastan.naziv,
+            //                //vreme = ns.Vreme == nastan.vreme,
+            //                //slika = ns.Slika == nastan.slika,
+            //                //cas = ns.Cas == nastan.cas,
+            //                //kratok_opis = ns.Kopis == nastan.kratok_opis,
+            //                //sirok_opis = ns.Sopis == nastan.sirok_opis,
+            //                //sajt = ns.Sajt == nastan.sajt,
+            //                //video = ns.Video == nastan.video
+
+            //                ID = nastan.id_nastan,
+            //                naziv = nastan.naziv,
+            //                vreme = nastan.vreme,
+            //                slika = nastan.slika,
+            //                cas = nastan.cas,
+            //                kratok_opis = nastan.kratok_opis,
+            //                sirok_opis = nastan.sirok_opis,
+            //                sajt = nastan.sajt,
+            //                video = nastan.video
+            //            };
+            ////ns = new Nastan();
+            //ns.Id = Int32.Parse(query.Select(x => x.ID).ToString());
+            //ns.Naziv = query.Select(x => x.naziv).ToString();
+            //ns.Slika = query.Select(x => x.slika).ToString();
+            //ns.Cas = query.Select(x => x.cas).ToString();
+            //ns.Kopis = query.Select(x => x.kratok_opis).ToString();
+            //ns.Sopis = query.Select(x => x.sirok_opis).ToString();
+            //ns.Sajt = query.Select(x => x.sajt).ToString();
+            //ns.Video = query.Select(x => x.video).ToString();
+            //return ns;
             using (OleDbConnection CNN = new OleDbConnection(Konekcija))
             {
                 sql = "select id_nastan, naziv, vreme, slika, cas, kratok_opis, sirok_opis, sajt, video";
@@ -805,10 +897,10 @@ namespace TestWS
             var result = context.klients.Where(x => x.id_klient == id).FirstOrDefault();
             switch (result.isadmin)
             {
-                case 1:
+                case true:
                     return "Already an admin";
                 default:
-                    result.isadmin = 1;
+                    result.isadmin = true;
                     context.SaveChanges();
                     return "OK";
             }
@@ -864,9 +956,311 @@ namespace TestWS
             }
         }
 
-            //###################### DELETE ###########################
+        //###################### DELETE ###########################
 
+        [WebMethod]
+        public string Brisi_kosnicka_eden(int fk_id_karti, int fk_id_klient)
+        {
+            context = new OBContext();
 
-            //###################### INSERT ###########################
+            var result = context.kosnickas.Where(x => x.fk_id_karti == fk_id_karti &&
+                                                      x.fk_id_klient == fk_id_klient).FirstOrDefault();
+
+            if (result == null)
+            {
+                return "Null";
+            }
+            else
+            {
+                context.kosnickas.Remove(result);
+                context.SaveChanges();
+
+                return "OK";
+            }
         }
+
+        [WebMethod]
+        public string Brisi_klient(int id)
+        {
+            context = new OBContext();
+
+            var result = context.klients.Where(x => x.id_klient == id).FirstOrDefault();
+
+            if (result == null)
+            {
+                return "Null";
+            }
+            else
+            {
+                context.klients.Remove(result);
+                context.SaveChanges();
+
+                return "OK";
+            }
+        }
+
+        [WebMethod]
+        public string Brisi_nastan(int id)
+        {
+            context = new OBContext();
+
+            var result = context.nastans.Where(x => x.id_nastan == id).FirstOrDefault();
+
+            if (result == null)
+            {
+                return "Null";
+            }
+            else
+            {
+                context.nastans.Remove(result);
+                context.SaveChanges();
+
+                return "OK";
+            }
+        }
+        //###################### INSERT ###########################
+
+        [WebMethod]
+        public string Register(string user, string password, string ime, string prezime, string email)
+        {
+            context = new OBContext();
+
+            var Resultusername = from klient in context.klients
+                                 where klient.username == user
+                                 select klient;
+
+            var ResultEmail = from klient in context.klients
+                              where klient.email == email
+                              select klient;
+
+            if (Resultusername.Count() > 0 | ResultEmail.Count() > 0)
+            {
+                if (Resultusername.Count() > 0 & ResultEmail.Count() > 0)
+                {
+                    return "username and email taken";
+                }
+
+                if (Resultusername.Count() > 0)
+                {
+                    return "username taken";
+                }
+
+                if (ResultEmail.Count() > 0)
+                {
+                    return "email taken";
+                }
+                return "aosjhd";
+
+            }
+            else
+            {
+
+                klient klt = new klient();
+
+                klt.username = user;
+                klt.pass = password;
+                klt.ime = ime;
+                klt.prezime = prezime;
+                klt.email = email;
+
+
+                var result = context.klients.Add(klt);
+
+                if (result == null)
+                {
+                    return "ERROR";
+                }
+                else
+                {
+                    context.SaveChanges();
+                    return "OK";
+                }
+
+            }
+        }
+
+        [WebMethod]
+        public string Vnesi_nastan(string naziv, int objekt, int opis, string data, string slika, string cas)
+        {
+            context = new OBContext();
+            nastan nas = new nastan();
+            nas.naziv = naziv;
+            nas.o_id_objekt = objekt;
+            nas.fk_id_komintent = opis;
+            nas.data = DateTime.Parse(data);
+            nas.slika = slika;
+            nas.cas = cas;
+            var result = context.nastans.Add(nas);
+
+            if (result == null)
+            {
+                return "ERROR";
+            }
+            else
+            {
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+
+        [WebMethod]// nema potreba. Vnesuvas user i samo MakeAdmin...
+        public string Vnesi_admin(string user, string pass, string ime, string prez, string email)
+        {
+            context = new OBContext();
+
+            var Resultusername = from klient in context.klients
+                                 where klient.username == user
+                                 select klient;
+
+            var ResultEmail = from klient in context.klients
+                              where klient.email == email
+                              select klient;
+            if (Resultusername.Count() > 0 | ResultEmail.Count() > 0)
+            {
+                if (Resultusername.Count() > 0 & ResultEmail.Count() > 0)
+                {
+                    return "username and email taken";
+                }
+
+                if (Resultusername.Count() > 0)
+                {
+                    return "username taken";
+                }
+
+                if (ResultEmail.Count() > 0)
+                {
+                    return "email taken";
+                }
+                return "aosjhd";
+
+            }
+            else
+            {
+
+                klient x = new klient();
+
+                x.username = user;
+                x.pass = pass;
+                x.ime = ime;
+                x.prezime = prez;
+                x.email = email;
+                x.isadmin = true;
+
+
+                var result = context.klients.Add(x);
+
+                if (result == null)
+                {
+                    return "ERROR";
+                }
+                else
+                {
+                    context.SaveChanges();
+                    return "OK";
+                }
+
+            }
+        }
+
+        [WebMethod]
+        public string Vnesi_opis(string opis)
+        {
+            komintent x = new komintent();
+            x.opis = opis;
+
+            var result = context.komintents.Add(x);
+
+            if (result == null)
+            {
+                return "ERROR";
+            }
+            else
+            {
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+
+        [WebMethod]
+        public string Vnesi_objekt(string ime, string grad)
+        {
+            objekt x = new objekt();
+            x.ime = ime;
+            x.grad = grad;
+
+            var result = context.objekts.Add(x);
+
+            if (result == null)
+            {
+                return "ERROR";
+            }
+            else
+            {
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+
+        [WebMethod]
+        public string Vnesi_vo_kosnicka(int id_karta, int id_klient)
+        {
+            kosnicka x = new kosnicka();
+            x.fk_id_karti = id_karta;
+            x.fk_id_klient = id_klient;
+
+            var result = context.kosnickas.Add(x);
+            if (result == null)
+            {
+                return "ERROR";
+            }
+            else
+            {
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+
+        [WebMethod]
+        public string Kupi_karta(int id_karta, int id_klient, string data)
+        {
+            prodazba x = new prodazba();
+            x.id_karti = id_karta;
+            x.id_klient = id_klient;
+            x.datum_prodazba = data;
+
+            var result = context.prodazbas.Add(x);
+            if (result == null)
+            {
+                return "ERROR";
+            }
+            else
+            {
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+
+        [WebMethod]
+        public string Vnesi_karta(int nastan, string zona, int red, int mesto, int cena)
+        {
+            karti x = new karti();
+            x.n_id_nastan = nastan;
+            x.zona = zona;
+            x.red = red.ToString();
+            x.mesto = mesto.ToString();
+            x.cena = cena;
+
+            var result = context.kartis.Add(x);
+            if (result == null)
+            {
+                return "ERROR";
+            }
+            else
+            {
+                context.SaveChanges();
+                return "OK";
+            }
+        }
+    }
 }
+
